@@ -783,6 +783,13 @@ static int msm_fb_lcdc_config(int on)
 }
 
 #ifdef CONFIG_ZTE_PLATFORM
+
+//lcd reset & spi 
+#define GPIO_LCD_RESET_OUT 	    91
+#define GPIO_LCD_SPI_CS_OUT    	122
+#define GPIO_LCD_SPI_SDO_OUT 	123
+#define GPIO_LCD_SPI_SCLK_OUT 	124 
+#define GPIO_LCD_SPI_SDI_IN 	132
 static int gpio_array_num[] = {
 				GPIO_LCD_SPI_SCLK_OUT, /* spi_clk */
 				GPIO_LCD_SPI_CS_OUT, /* spi_cs  */
