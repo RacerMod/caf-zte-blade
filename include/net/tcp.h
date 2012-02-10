@@ -15,6 +15,12 @@
  *		as published by the Free Software Foundation; either version
  *		2 of the License, or (at your option) any later version.
  */
+
+/* ========================================================================================
+when         who        what, where, why                             comment tag
+--------     ----       -----------------------------                ----------------------
+2011-03-25   wangcheng Set the tcp windows size >64k         ZTE_WANGCHENG_TCP_20110325
+==========================================================================================*/
 #ifndef _TCP_H
 #define _TCP_H
 
@@ -238,6 +244,11 @@ extern int sysctl_tcp_abc;
 extern int sysctl_tcp_mtu_probing;
 extern int sysctl_tcp_base_mss;
 extern int sysctl_tcp_workaround_signed_windows;
+//ZTE_WANGCHENG_TCP_20110325 start
+#ifdef CONFIG_ZTE_PLATFORM
+extern int sysctl_tcp_force_windows_size_64k;
+#endif
+//ZTE_WANGCHENG_TCP_20110325 end
 extern int sysctl_tcp_slow_start_after_idle;
 extern int sysctl_tcp_max_ssthresh;
 extern int sysctl_tcp_cookie_size;
