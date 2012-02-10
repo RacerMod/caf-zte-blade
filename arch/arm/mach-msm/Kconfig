@@ -280,6 +280,28 @@ config MACH_MSM7X27_FFA
 	help
 	  Support for the Qualcomm MSM7x27 FFA eval board.
 
+config ZTE_PLATFORM
+	bool "ZTE Platform"	
+	default y
+	help
+	  Global macro for ZTE code
+
+config MACH_BLADE
+	depends on ARCH_MSM7X27
+	depends on !MSM_STACKED_MEMORY
+	default n
+	bool "ZTE BLADE"
+	select ZTE_PLATFORM
+	help
+	  Support for the ZTE MSM7x27 Blade phone.
+
+config MACH_BLADE_CAMERA5MP
+	depends on MACH_BLADE
+	default n
+	bool "ZTE blade board,5MP camera."
+	help
+	  Support for the ZTE blade board,5MP camera.
+
 config MACH_MSM7X27A_RUMI3
         depends on ARCH_MSM7X27A
         depends on !MSM_STACKED_MEMORY
@@ -564,6 +586,26 @@ config MACH_FSM9XXX_SURF
 
 endmenu
 
+choice
+	prompt "Kernel Offset"
+	default ZTE_GEN2
+
+config ZTE_GEN1
+       bool "ZTE Generation 1"
+       help
+         This option is used to indicate if the kernel is to be compiled
+         for ZTE Generation 1 bootloader (devices sold with Android 2.1
+         and have not updated the bootloader. Loads the kernel to 0x02A00000).
+
+config ZTE_GEN2
+       bool "ZTE Generation 2"
+       help
+         This option is used to indicate if the kernel is to be compiled
+         for ZTE Generation 2 bootloader (devices sold with Android 2.2+
+         or have installed the newer bootloader. Loads the kernel to 0x02600000).
+endchoice
+
+
 config MSM_STACKED_MEMORY
 	bool "Stacked Memory"
 	default y
@@ -574,6 +616,8 @@ config MSM_STACKED_MEMORY
 
 config PHYS_OFFSET
 	hex
+	default "0x02A00000" if !MSM_STACKED_MEMORY && ZTE_GEN1
+	default "0x02600000" if !MSM_STACKED_MEMORY && ZTE_GEN2
 	default "0x80200000" if ARCH_APQ8064
 	default "0x80200000" if ARCH_MSM8960
 	default "0x10000000" if ARCH_FSM9XXX

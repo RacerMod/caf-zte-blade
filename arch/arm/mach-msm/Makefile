@@ -259,3 +259,6 @@ obj-$(CONFIG_MSM_RPC_VIBRATOR) += msm_vibrator.o
 obj-$(CONFIG_MSM_NATIVE_RESTART) += restart.o
 
 obj-$(CONFIG_MSM_PROC_COMM_REGULATOR) += proccomm-regulator.o
+
+# Add ZTE board files and keypad config files
+obj-$(CONFIG_MACH_BLADE) += board-zte-blade-keypad.o board-zte-blade.o
