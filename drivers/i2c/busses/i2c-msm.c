@@ -603,11 +603,16 @@ msm_i2c_probe(struct platform_device *pdev)
 		ret = -ENOSYS;
 		goto err_clk_get_failed;
 	}
+#ifdef CONFIG_ZTE_PLATFORM
+	printk(KERN_INFO" Warning: msm on-chip aux i2c bus disabled on Board mooncake!\n");
+#else
 	if (!pdata->msm_i2c_config_gpio) {
 		dev_err(&pdev->dev, "config_gpio function not initialized\n");
 		ret = -ENOSYS;
 		goto err_clk_get_failed;
 	}
+#endif
+	/*end ,ZTE_I2C_ZHYF_001, zhuyufei 2009-10-22*/
 	/* We support frequencies upto FAST Mode(400KHz) */
 	if (pdata->clk_freq <= 0 || pdata->clk_freq > 400000) {
 		dev_err(&pdev->dev, "clock frequency not supported\n");
