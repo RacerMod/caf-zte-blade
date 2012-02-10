@@ -17,6 +17,13 @@
  *
  */
 
+/* ======================================================
+when         who        what, where, why                                 comment tag
+--------   ----    -------------------------------------    ----------------------------------
+2010-11-03  ruijiagui    fix can not modify mtu to meet Softbank requirement  ZTE_RIL_RJG_20101103
+2011-04-25  wangcheng    fix the rtp/udp package droped    ZTE_RIL_WANGCHENG_20110425
+=======================================================*/
+
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/string.h>
@@ -71,6 +78,10 @@ static const char *ch_name[RMNET_DEVICE_COUNT] = {
 
 /* XXX should come from smd headers */
 #define SMD_PORT_ETHER0 11
+
+//ZTE_RIL_RJG_20101103 begin
+#define ETHERNET_HEAD_LEN   14
+//ZTE_RIL_RJG_20101103 end
 
 /* allow larger frames */
 #define RMNET_DATA_LEN 2000
@@ -271,9 +282,13 @@ static void smd_net_data_handler(unsigned long arg)
 		sz = smd_cur_packet_size(p->ch);
 		if (sz == 0) break;
 		if (smd_read_avail(p->ch) < sz) break;
-
+#ifdef CONFIG_ZTE_PLATFORM
+		if (RMNET_IS_MODE_IP(opmode) ? (sz > ((dev->mtu > RMNET_DEFAULT_MTU_LEN)? dev->mtu:RMNET_DEFAULT_MTU_LEN)) :
+						(sz > (((dev->mtu > RMNET_DEFAULT_MTU_LEN)? dev->mtu:RMNET_DEFAULT_MTU_LEN) + ETH_HLEN))) {
+#else
 		if (RMNET_IS_MODE_IP(opmode) ? (sz > dev->mtu) :
 						(sz > (dev->mtu + ETH_HLEN))) {
+#endif
 			pr_err("[%s] rmnet_recv() discarding packet len %d (%d mtu)\n",
 				dev->name, sz, RMNET_IS_MODE_IP(opmode) ?
 					dev->mtu : (dev->mtu + ETH_HLEN));
