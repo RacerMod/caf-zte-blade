@@ -204,4 +204,3 @@ config QUP_EXCLUSIVE_TO_CAMERA
 	  is disabled, the lvs1 voltage is enabled
 	  by QUP in the board file as QUP is used by
 	  applications other than camera.
-
