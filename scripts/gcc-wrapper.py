@@ -63,6 +63,7 @@ allowed_warnings = set([
     "xt_log.h:50",
     "snd_pcm_client.c:192",
     "snd_pcm_client.c:418",
+    "sched.c:3930",
  ])
 
 # Capture the name of the object file, can find it.
