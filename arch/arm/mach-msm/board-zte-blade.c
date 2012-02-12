@@ -475,6 +475,13 @@ static int msm_otg_rpc_phy_reset(void __iomem *regs)
 	return msm_hsusb_phy_reset();
 }
 
+#ifdef 	CONFIG_ZTE_PLATFORM
+static int msm_hsusb_rpc_phy_reset(void __iomem *addr)
+{
+        return msm_hsusb_phy_reset();
+}
+#endif
+
 static struct msm_otg_platform_data msm_otg_pdata = {
 	.rpc_connect	= hsusb_rpc_connect,
 #ifdef CONFIG_ZTE_PLATFORM
