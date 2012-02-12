@@ -2554,7 +2554,7 @@ static struct platform_device msm_wlan_ar6000_pm_device = {
 #endif
 
 #ifdef CONFIG_ZTE_PLATFORM
-static struct i2c_board_info aux_i2c_devices[] = {
+static struct i2c_board_info aux2_i2c_devices[] = {
 	{
 		I2C_BOARD_INFO("si4708", 0x10),
 	},
@@ -2563,10 +2563,6 @@ static struct i2c_board_info aux_i2c_devices[] = {
 		.type         = "taos",
 		.addr         = 0x39,
 	},
-	
-};
-
-static struct i2c_board_info aux2_i2c_devices[] = {
 #ifndef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C
 	{
 		I2C_BOARD_INFO("akm8973", 0x1c),
