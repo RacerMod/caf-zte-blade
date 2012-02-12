@@ -384,7 +384,7 @@ static struct msm_hsusb_platform_data msm_hsusb_pdata = {
 	.function_map   = usb_functions_map,
 	.num_functions	= ARRAY_SIZE(usb_functions_map),
 	.config_gpio    = NULL,
-#else
+#else // !CONFIG_ZTE_PLATFORM
 	.version	= 0x0100,
 	.phy_info	= (USB_PHY_INTEGRATED | USB_PHY_MODEL_65NM),
 	.vendor_id          = 0x5c6,
@@ -396,8 +396,9 @@ static struct msm_hsusb_platform_data msm_hsusb_pdata = {
 	.function_map   = usb_functions_map,
 	.num_functions	= ARRAY_SIZE(usb_functions_map),
 	.config_gpio    = NULL,
-#endif
+#endif //CONFIG_ZTE_PLATFORM
 };
+#endif //CONFIG_USB_FUNCTION
 
 
 #ifdef CONFIG_USB_EHCI_MSM_72K
