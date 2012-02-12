@@ -83,6 +83,8 @@ static const char *ch_name[RMNET_DEVICE_COUNT] = {
 #define ETHERNET_HEAD_LEN   14
 //ZTE_RIL_RJG_20101103 end
 
+#define RMNET_DEFAULT_MTU_LEN 1500 //ZTE change
+
 /* allow larger frames */
 #define RMNET_DATA_LEN 2000
 
