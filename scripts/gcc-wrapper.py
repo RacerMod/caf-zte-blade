@@ -68,6 +68,7 @@ allowed_warnings = set([
     "bootmem.c:421",
     "file.c:2052",
     "dir.c:414",
+    "msm_nand.c:2383",
  ])
 
 # Capture the name of the object file, can find it.
