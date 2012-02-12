@@ -64,6 +64,7 @@ allowed_warnings = set([
     "snd_pcm_client.c:192",
     "snd_pcm_client.c:418",
     "sched.c:3930",
+    "pm_qos_params.c:133".
  ])
 
 # Capture the name of the object file, can find it.
