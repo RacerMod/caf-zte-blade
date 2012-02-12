@@ -948,6 +948,12 @@ static struct platform_device msm_bt_power_device = {
 	.name = "bt_power",
 };
 
+//compatible of qualcomm and broadcomm bluetooth chip     ZTE_BT_QXX_20101207 begin
+static struct platform_device msm_bcm_power_device = {
+	.name = "bcm_power",
+};
+//compatible of qualcomm and broadcomm bluetooth chip     ZTE_BT_QXX_20101207 end
+
 enum {
 	BT_WAKE,
 	BT_RFR,
@@ -1085,7 +1091,7 @@ static void __init bt_power_init(void)
 {
 	msm_bt_power_device.dev.platform_data = &bluetooth_power;
 #ifdef CONFIG_ZTE_PLATFORM
-	msm_bcm_power_device.dev.platform_data = &bcm_power;   //compatible of qualcomm and broadcomm bluetooth chip     ZTE_BT_QXX_20101207
+	//msm_bcm_power_device.dev.platform_data = &bcm_power;   //compatible of qualcomm and broadcomm bluetooth chip     ZTE_BT_QXX_20101207
 #endif
 }
 #else	//CONFIG_BT
