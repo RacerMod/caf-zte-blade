@@ -105,19 +105,11 @@ static struct resource smc91x_resources[] = {
 
 #ifdef CONFIG_USB_FUNCTION
 static struct usb_mass_storage_platform_data usb_mass_storage_pdata = {
-#ifdef CONFIG_ZTE_PLATFORM
 	.nluns          = 0x02,
 	.buf_size       = 16384,
 	.vendor         = "ZTE",
 	.product        = "Mass storage",
 	.release        = 0xffff,
-#else
-	.nluns          = 0x02,
-	.buf_size       = 16384,
-	.vendor         = "GOOGLE",
-	.product        = "Mass storage",
-	.release        = 0xffff,
-#endif
 };
 
 static struct platform_device mass_storage_device = {
@@ -200,19 +192,11 @@ static struct android_usb_product usb_products[] = {
 };
 
 static struct usb_mass_storage_platform_data mass_storage_pdata = {
-#ifdef CONFIG_ZTE_PLATFORM
 	.nluns		= 1,
 	.vendor		= "ZTE Incorporated",
 	.product        = "Mass storage",
 	.release	= 0x0100,
 	.can_stall	= 1,
-#else
-	.nluns		= 1,
-	.vendor		= "Qualcomm Incorporated",
-	.product        = "Mass storage",
-	.release	= 0x0100,
-	.can_stall	= 1,
-#endif
 };
 
 static struct platform_device usb_mass_storage_device = {
@@ -225,14 +209,8 @@ static struct platform_device usb_mass_storage_device = {
 
 static struct usb_ether_platform_data rndis_pdata = {
 	/* ethaddr is filled by board_serialno_setup */
-#ifdef CONFIG_ZTE_PLATFORM
 	.vendorID	= 0x19d2,
 	.vendorDescr	= "ZTE Incorporated",
-#else
-	.vendorID	= 0x05C6,
-	.vendorDescr	= "Qualcomm Incorporated",
-#endif
-
 };
 
 static struct platform_device rndis_device = {
@@ -244,7 +222,6 @@ static struct platform_device rndis_device = {
 };
 
 static struct android_usb_platform_data android_usb_pdata = {
-#ifdef CONFIG_ZTE_PLATFORM
 	.vendor_id	= 0x19d2,
 	.product_id	= 0x0100,
 	.version	= 0x0100,
@@ -255,18 +232,6 @@ static struct android_usb_platform_data android_usb_pdata = {
 	.num_functions = ARRAY_SIZE(usb_functions_all),
 	.functions = usb_functions_all,
 	.serial_number = "1234567890ABCDEF",
-#else
-	.vendor_id	= 0x05C6,
-	.product_id	= 0x9026,
-	.version	= 0x0100,
-	.product_name		= "Qualcomm HSUSB Device",
-	.manufacturer_name	= "Qualcomm Incorporated",
-	.num_products = ARRAY_SIZE(usb_products),
-	.products = usb_products,
-	.num_functions = ARRAY_SIZE(usb_functions_all),
-	.functions = usb_functions_all,
-	.serial_number = "1234567890ABCDEF",
-#endif
 };
 
 static struct platform_device android_usb_device = {
@@ -372,7 +337,6 @@ static struct usb_composition usb_func_composition[] = {
 };
 
 static struct msm_hsusb_platform_data msm_hsusb_pdata = {
-#ifdef CONFIG_ZTE_PLATFORM
 	.version	= 0x0100,
 	.phy_info	= (USB_PHY_INTEGRATED | USB_PHY_MODEL_65NM),
 	.vendor_id          = 0x19d2,
@@ -384,19 +348,6 @@ static struct msm_hsusb_platform_data msm_hsusb_pdata = {
 	.function_map   = usb_functions_map,
 	.num_functions	= ARRAY_SIZE(usb_functions_map),
 	.config_gpio    = NULL,
-#else // !CONFIG_ZTE_PLATFORM
-	.version	= 0x0100,
-	.phy_info	= (USB_PHY_INTEGRATED | USB_PHY_MODEL_65NM),
-	.vendor_id          = 0x5c6,
-	.product_name       = "Qualcomm HSUSB Device",
-	.serial_number      = "1234567890ABCDEF",
-	.manufacturer_name  = "Qualcomm Incorporated",
-	.compositions	= usb_func_composition,
-	.num_compositions = ARRAY_SIZE(usb_func_composition),
-	.function_map   = usb_functions_map,
-	.num_functions	= ARRAY_SIZE(usb_functions_map),
-	.config_gpio    = NULL,
-#endif //CONFIG_ZTE_PLATFORM
 };
 #endif //CONFIG_USB_FUNCTION
 
