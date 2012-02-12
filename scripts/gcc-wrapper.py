@@ -69,6 +69,7 @@ allowed_warnings = set([
     "file.c:2052",
     "dir.c:414",
     "msm_nand.c:2383",
+    "msm_nand.c:2037",
  ])
 
 # Capture the name of the object file, can find it.
