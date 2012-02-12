@@ -75,6 +75,7 @@ allowed_warnings = set([
     "ehci-hub.c:630",
     "ehci-hub.c:1301",
     "soc-dapm.c:152",
+    "soc-dapm.c:141",
  ])
 
 # Capture the name of the object file, can find it.
