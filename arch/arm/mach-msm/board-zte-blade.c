@@ -2503,6 +2503,8 @@ struct msm_ts_platform_data msm_tssc_pdata = {
 #endif
 #endif //CONFIG_ZTE_PLATFORM
 
+static u32 msm_calculate_batt_capacity(u32 current_voltage);
+
 #ifdef CONFIG_ZTE_PLATFORM
 typedef struct 
 {
@@ -2569,7 +2571,6 @@ static struct platform_device msm_batt_device = {
 	.dev.platform_data  = &msm_psy_batt_data,
 };
 #else // !CONFIG_ZTE_PLATFORM 
-static u32 msm_calculate_batt_capacity(u32 current_voltage);
 
 static struct msm_psy_batt_pdata msm_psy_batt_data = {
 	.voltage_min_design 	= 2800,
