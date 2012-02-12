@@ -70,6 +70,7 @@ allowed_warnings = set([
     "dir.c:414",
     "msm_nand.c:2383",
     "msm_nand.c:2037",
+    "ehci-hub.c:203",
  ])
 
 # Capture the name of the object file, can find it.
