@@ -73,6 +73,7 @@ allowed_warnings = set([
     "ehci-hub.c:203",
     "ehci-hub.c:339",
     "ehci-hub.c:630",
+    "ehci-hub.c:1301",
  ])
 
 # Capture the name of the object file, can find it.
