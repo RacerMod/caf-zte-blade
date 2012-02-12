@@ -2720,7 +2720,6 @@ static struct platform_device *devices[] __initdata = {
 	&msm_device_tssc,
 #endif
 #endif
-	&msm_device_tssc,
 	&android_pmem_device,
 	&android_pmem_adsp_device,
 	&android_pmem_audio_device,
