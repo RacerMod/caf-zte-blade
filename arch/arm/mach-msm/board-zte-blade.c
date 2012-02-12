@@ -2597,23 +2597,6 @@ static struct platform_device msm_batt_device = {
 #endif //CONFIG_ZTE_PLATFORM
 
 #ifdef CONFIG_ZTE_PLATFORM
-#ifdef CONFIG_ANDROID_RAM_CONSOLE
-static struct resource ram_console_resource[] = {
-	{
-		.start	= MSM_RAM_CONSOLE_PHYS,
-		.end	= MSM_RAM_CONSOLE_PHYS + MSM_RAM_CONSOLE_SIZE - 1,
-		.flags	= IORESOURCE_MEM,
-	},
-};
-
-static struct platform_device ram_console_device = {
-	.name = "ram_console",
-	.id = -1,
-	.num_resources  = ARRAY_SIZE(ram_console_resource),
-	.resource       = ram_console_resource,
-};
-#endif
-
 /* ATHENV */
 static struct platform_device msm_wlan_ar6000_pm_device = {
 	.name		= "wlan_ar6000_pm_dev",
