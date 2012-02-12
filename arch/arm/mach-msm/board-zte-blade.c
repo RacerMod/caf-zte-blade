@@ -1199,19 +1199,7 @@ static struct synaptics_rmi4_data synaptics_ts_data = {
 	.power	= touchscreen_power,
 	.gpio_irq = 29,
 };
-#endif
-static struct i2c_board_info i2c_devices[] = {
-#ifdef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C   
-	{
-		I2C_BOARD_INFO("akm8962",0x0c),
-	},
-#endif
-#ifdef CONFIG_GSENSORS_FROM_AUXI2C_TO_I2C  
-	{
-		.type = "accelerator", 
-		.addr = 0x1d,
-	},
-#endif
+#endif //CONFIG_TOUCHSCREEN_SYNAPTICS_3K
 #endif //CONFIG-ZTE-PLATFORM
 
 static struct i2c_board_info i2c_devices[] = {
@@ -1245,8 +1233,17 @@ static struct i2c_board_info i2c_devices[] = {
 		I2C_BOARD_INFO("vb6801", 0x20),
 	},
 #endif
-};
-#ifdef CONFIG_ZTE_PLATFORM
+#ifdef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C   
+	{
+		I2C_BOARD_INFO("akm8962",0x0c),
+	},
+#endif
+#ifdef CONFIG_GSENSORS_FROM_AUXI2C_TO_I2C  
+	{
+		.type = "accelerator", 
+		.addr = 0x1d,
+	},
+#endif
 #ifdef CONFIG_MT9P111
     /*
      * Commented by zhang.shengjie
@@ -1258,9 +1255,9 @@ static struct i2c_board_info i2c_devices[] = {
      *            is defined
      */
 #if !defined(CONFIG_SENSOR_ADAPTER)
-    {
-        I2C_BOARD_INFO("mt9p111", 0x7A >> 1),
-    },
+	{
+        	I2C_BOARD_INFO("mt9p111", 0x7A >> 1),
+	},
 #else
     //Do nothing
 #endif
@@ -1278,9 +1275,9 @@ static struct i2c_board_info i2c_devices[] = {
      *            is defined
      */
 #if !defined(CONFIG_SENSOR_ADAPTER)
-    {
-        I2C_BOARD_INFO("mt9t11x", 0x7A >> 1),
-    },
+	{
+		I2C_BOARD_INFO("mt9t11x", 0x7A >> 1),
+	},
 #else
     //Do nothing
 #endif
@@ -1290,9 +1287,9 @@ static struct i2c_board_info i2c_devices[] = {
     /*
      * add by ZTE_CAMERA_LIJING_20100629 for MT9D115-2.0Mp-FF-Socket
      */
-    {
-        I2C_BOARD_INFO("mt9d115", 0x78 >> 1),
-    },
+	{
+        	I2C_BOARD_INFO("mt9d115", 0x78 >> 1),
+	},
 #endif
 
 #ifdef CONFIG_MT9V113
@@ -1302,9 +1299,9 @@ static struct i2c_board_info i2c_devices[] = {
      * Refer to drivers/media/video/msm/mt9v113.c
      * For MT9V113: 0.3Mp, 1/11-Inch System-On-A-Chip (SOC) CMOS Digital Image Sensor
      */
-    {
-        I2C_BOARD_INFO("mt9v113", 0x78 >> 1),
-    },
+	{
+		I2C_BOARD_INFO("mt9v113", 0x78 >> 1),
+	},
 #endif
 
 #ifdef CONFIG_OV5642
@@ -1318,9 +1315,9 @@ static struct i2c_board_info i2c_devices[] = {
      *            is defined
      */
 #if !defined(CONFIG_SENSOR_ADAPTER)
-    {
-        I2C_BOARD_INFO("ov5642", 0x78 >> 1),
-    },
+	{
+       		I2C_BOARD_INFO("ov5642", 0x78 >> 1),
+	},
 #else
     //Do nothing
 #endif
@@ -1328,9 +1325,9 @@ static struct i2c_board_info i2c_devices[] = {
 
 #ifdef CONFIG_OV5640
 #if !defined(CONFIG_SENSOR_ADAPTER)
-    {
-        I2C_BOARD_INFO("ov5640", 0x78 >> 1),
-    },
+	{
+		I2C_BOARD_INFO("ov5640", 0x78 >> 1),
+	},
 #else
     //Do nothing
 #endif
@@ -1342,9 +1339,9 @@ static struct i2c_board_info i2c_devices[] = {
      * add by ZTE_CAMERA_GUOYANLING_20110328 for S5K5CAGX-3.0Mp-AF-FPC
      */
 #if !defined(CONFIG_SENSOR_ADAPTER)
-    {
-        I2C_BOARD_INFO("s5k5cagx", 0x78 >> 1),
-    },
+	{
+       		I2C_BOARD_INFO("s5k5cagx", 0x78 >> 1),
+	},
 #else
     //Do nothing
 #endif
@@ -1393,7 +1390,6 @@ static struct i2c_board_info i2c_devices[] = {
 	},
 #endif
 };
-#endif //CONFIG_ZTE_PLATFORM
 
 #ifdef CONFIG_MSM_CAMERA
 static uint32_t camera_off_gpio_table[] = {
