@@ -55,6 +55,7 @@
 #include <linux/mtd/nand.h>
 #include <linux/mtd/partitions.h>
 #include <linux/i2c.h>
+#include <linux/i2c-gpio.h>
 #include <linux/android_pmem.h>
 #include <mach/camera.h>
 
