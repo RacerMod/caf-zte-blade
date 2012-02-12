@@ -764,7 +764,7 @@ static uint32_t lcdc_gpio_table[] = {
 	GPIO_CFG(GPIO_LCD_SPI_SDI_IN, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_UP, GPIO_CFG_2MA),
 	GPIO_CFG(GPIO_LCD_SPI_SDO_OUT, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 
-#else
+#else //CONFIG_ZTE_PLATFORM
 static int gpio_array_num[] = {
 				GPIO_OUT_132, /* spi_clk */
 				GPIO_OUT_131, /* spi_cs  */
@@ -793,8 +793,8 @@ static uint32_t lcdc_gpio_table[] = {
 	GPIO_CFG(GPIO_OUT_103, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 	GPIO_CFG(GPIO_OUT_102, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 	GPIO_CFG(GPIO_OUT_88,  0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
+#endif // CONFIG_ZTE_PLATFORM
 };
-#endif
 
 static void config_lcdc_gpio_table(uint32_t *table, int len, unsigned enable)
 {
