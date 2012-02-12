@@ -3234,7 +3234,7 @@ static void usb_mpp_init(void)
 extern void  __init msm_init_pmic_vibrator(void); 
  
 
-static ssize_t debug_global_read(struct file *file, char __user *buf,
+/*static ssize_t debug_global_read(struct file *file, char __user *buf,
 				    size_t len, loff_t *offset)
 {
 	loff_t pos = *offset;
@@ -3252,7 +3252,7 @@ static ssize_t debug_global_read(struct file *file, char __user *buf,
 
 	*offset += count;
 	return count;
-}
+}*/
 
 static struct file_operations debug_global_file_ops = {
 	.owner = THIS_MODULE,
@@ -3277,9 +3277,9 @@ static void msm7x27_wlan_init(void)
 static void touch_vdd(void)
 {
 		gpio_tlmm_config(GPIO_CFG(60, 0, GPIO_CFG_OUTPUT,
-					GPIO_NO_PULL, GPIO_16MA), GPIO_CFG_ENABLE);
+					GPIO_CFG_NO_PULL, GPIO_CFG_16MA), GPIO_CFG_ENABLE);
 		gpio_tlmm_config(GPIO_CFG(61, 0, GPIO_CFG_OUTPUT,
-					GPIO_NO_PULL, GPIO_16MA), GPIO_CFG_ENABLE);
+					GPIO_CFG_NO_PULL, GPIO_CFG_16MA), GPIO_CFG_ENABLE);
 		gpio_direction_output(60, 0);
 		gpio_direction_output(61, 0);
 		gpio_direction_output(31, 0);
