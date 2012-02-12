@@ -2490,8 +2490,6 @@ static struct platform_device msm_camera_sensor_ov5640 = {
 };
 #endif
 
-#endif
-
 /*add touchsreen size definition for mooncake.  QVGA*/
 #if defined( CONFIG_TOUCHSCREEN_MSM_LEGACY)
 struct msm_ts_platform_data msm_tssc_pdata ={
