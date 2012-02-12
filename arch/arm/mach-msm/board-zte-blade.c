@@ -814,10 +814,10 @@ static void lcdc_lead_gpio_init(void)
 }
 
 static uint32_t lcdc_gpio_table[] = {
-	GPIO_CFG(GPIO_LCD_SPI_SCLK_OUT, 0, GPIO_OUTPUT, GPIO_NO_PULL, GPIO_2MA),
-	GPIO_CFG(GPIO_LCD_SPI_CS_OUT, 0, GPIO_OUTPUT, GPIO_NO_PULL, GPIO_2MA),
-	GPIO_CFG(GPIO_LCD_SPI_SDI_IN, 0, GPIO_INPUT, GPIO_PULL_UP, GPIO_2MA),
-	GPIO_CFG(GPIO_LCD_SPI_SDO_OUT, 0, GPIO_OUTPUT, GPIO_NO_PULL, GPIO_2MA),
+	GPIO_CFG(GPIO_LCD_SPI_SCLK_OUT, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
+	GPIO_CFG(GPIO_LCD_SPI_CS_OUT, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
+	GPIO_CFG(GPIO_LCD_SPI_SDI_IN, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_UP, GPIO_CFG_2MA),
+	GPIO_CFG(GPIO_LCD_SPI_SDO_OUT, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),
 
 #else
 static int gpio_array_num[] = {
@@ -1018,7 +1018,7 @@ enum {
 
 static unsigned bt_config_power_on[] = {
 #ifdef CONFIG_ZTE_PLATFORM
-	GPIO_CFG(90, 0, GPIO_OUTPUT, GPIO_NO_PULL, GPIO_2MA),			/* WAKE ZTE_BT_QXX_20100709*/
+	GPIO_CFG(90, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),			/* WAKE ZTE_BT_QXX_20100709*/
 #else
 	GPIO_CFG(42, 0, GPIO_CFG_OUTPUT, GPIO_CFG_NO_PULL, GPIO_CFG_2MA),	/* WAKE */
 #endif
@@ -1034,7 +1034,7 @@ static unsigned bt_config_power_on[] = {
 };
 static unsigned bt_config_power_off[] = {
 #ifdef CONFIG_ZTE_PLATFORM
-	GPIO_CFG(90, 0, GPIO_INPUT, GPIO_PULL_DOWN, GPIO_2MA),			/* WAKE */ // ZTE_BT_QXX_20100709: 42 to 90
+	GPIO_CFG(90, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),			/* WAKE */ // ZTE_BT_QXX_20100709: 42 to 90
 #else
 	GPIO_CFG(42, 0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),	/* WAKE */
 #endif
@@ -1448,18 +1448,18 @@ static struct i2c_board_info i2c_devices[] = {
 static uint32_t camera_off_gpio_table[] = {
 	/* parallel CAMERA interfaces */
 #ifdef CONFIG_ZTE_PLATFORM
-	GPIO_CFG(4,  0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <0> */
-	GPIO_CFG(5,  0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <1> */
-	GPIO_CFG(6,  0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <2> */
-	GPIO_CFG(7,  0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <3> */
-	GPIO_CFG(8,  0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <4> */
-	GPIO_CFG(9,  0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <5> */
-	GPIO_CFG(10, 0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <6> */
-	GPIO_CFG(11, 0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_DATA <7> */
-	GPIO_CFG(12, 0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_PCLK */
-	GPIO_CFG(13, 0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_HSYNC */
-	GPIO_CFG(14, 0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA), /* CIF_VSYNC */
-	GPIO_CFG(15, 0, GPIO_OUTPUT, GPIO_PULL_DOWN, GPIO_2MA),  /* CIF_MCLK */
+	GPIO_CFG(4,  0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <0> */
+	GPIO_CFG(5,  0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <1> */
+	GPIO_CFG(6,  0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <2> */
+	GPIO_CFG(7,  0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <3> */
+	GPIO_CFG(8,  0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <4> */
+	GPIO_CFG(9,  0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <5> */
+	GPIO_CFG(10, 0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <6> */
+	GPIO_CFG(11, 0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_DATA <7> */
+	GPIO_CFG(12, 0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_PCLK */
+	GPIO_CFG(13, 0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_HSYNC */
+	GPIO_CFG(14, 0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* CIF_VSYNC */
+	GPIO_CFG(15, 0, GPIO_CFG_OUTPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA),  /* CIF_MCLK */
 #else
 	GPIO_CFG(0,  0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* DAT0 */
 	GPIO_CFG(1,  0, GPIO_CFG_INPUT, GPIO_CFG_PULL_DOWN, GPIO_CFG_2MA), /* DAT1 */
@@ -2833,9 +2833,6 @@ static struct platform_device *devices[] __initdata = {
 #endif
 	&hs_device,
 	&msm_batt_device,
-#ifdef CONFIG_ANDROID_RAM_CONSOLE
-	&ram_console_device,
-#endif
 };
 
 static struct msm_panel_common_pdata mdp_pdata = {
@@ -3243,11 +3240,11 @@ static void __init msm_device_i2c_init(void)
 //USB-HML-001 : USB 3.3V control
 #define MSM_GPIO_USB3V3	    21 
 static unsigned usb_config_power_on =	GPIO_CFG(MSM_GPIO_USB3V3, 0, 
-                                                                                GPIO_OUTPUT, GPIO_PULL_UP, GPIO_2MA);
+                                                                                GPIO_CFG_OUTPUT, GPIO_CFG_PULL_UP, GPIO_CFG_2MA);
 static int init_usb3v3(void)
 {
 	int rc;
-	rc = gpio_tlmm_config(usb_config_power_on,GPIO_ENABLE);
+	rc = gpio_tlmm_config(usb_config_power_on,GPIO_CFG_ENABLE);
 	if (rc) {
 		printk(KERN_ERR "%s: gpio_tlmm_config(%#x)=%d\n",__func__, MSM_GPIO_USB3V3, rc);
 		return -EIO;
@@ -3331,10 +3328,10 @@ static void msm7x27_wlan_init(void)
 #if defined (CONFIG_MACH_BLADE)
 static void touch_vdd(void)
 {
-		gpio_tlmm_config(GPIO_CFG(60, 0, GPIO_OUTPUT,
-					GPIO_NO_PULL, GPIO_16MA), GPIO_ENABLE);
-		gpio_tlmm_config(GPIO_CFG(61, 0, GPIO_OUTPUT,
-					GPIO_NO_PULL, GPIO_16MA), GPIO_ENABLE);
+		gpio_tlmm_config(GPIO_CFG(60, 0, GPIO_CFG_OUTPUT,
+					GPIO_NO_PULL, GPIO_16MA), GPIO_CFG_ENABLE);
+		gpio_tlmm_config(GPIO_CFG(61, 0, GPIO_CFG_OUTPUT,
+					GPIO_NO_PULL, GPIO_16MA), GPIO_CFG_ENABLE);
 		gpio_direction_output(60, 0);
 		gpio_direction_output(61, 0);
 		gpio_direction_output(31, 0);
