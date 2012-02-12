@@ -79,6 +79,7 @@ allowed_warnings = set([
     "af_packet.c:672",
     "core.c:589",
     "sch_generic.c:254",
+    "svcsock.c:698",
  ])
 
 # Capture the name of the object file, can find it.
