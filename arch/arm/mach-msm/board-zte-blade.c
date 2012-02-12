@@ -2790,15 +2790,6 @@ static void __init msm_fb_add_devices(void)
 
 #ifdef CONFIG_ZTE_PLATFORM
 static struct i2c_board_info aux_i2c_devices[] = {
-#if 0
-	{
-		.type         = "avago_ofn",
-		/*.flags        = ,*/
-		.addr         = 0x33,
-		.platform_data = &avago_ofn,
-		.irq          = MSM_GPIO_TO_INT(35),
-	},
-#endif
 	{
 		I2C_BOARD_INFO("si4708", 0x10),
 	},
