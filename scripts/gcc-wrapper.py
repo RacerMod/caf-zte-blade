@@ -81,6 +81,7 @@ allowed_warnings = set([
     "sch_generic.c:254",
     "svcsock.c:698",
     "svcauth_unix.c:724",
+    "xfrm_policy.c:2412",
  ])
 
 # Capture the name of the object file, can find it.
