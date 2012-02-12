@@ -1189,7 +1189,7 @@ static struct resource bluesleep_resources[] = {
 #ifdef CONFIG_ZTE_PLATFORM
 		.start	= 90,
 		.end	= 90,
-#endif
+#else
 		.start	= 42,
 		.end	= 42,
 #endif
