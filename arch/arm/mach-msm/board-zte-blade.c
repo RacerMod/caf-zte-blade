@@ -2554,7 +2554,7 @@ static struct platform_device msm_wlan_ar6000_pm_device = {
 #endif
 
 #ifdef CONFIG_ZTE_PLATFORM
-static struct i2c_board_info aux2_i2c_devices[] = {
+static struct i2c_board_info aux_i2c_devices[] = {
 	{
 		I2C_BOARD_INFO("si4708", 0x10),
 	},
@@ -2563,6 +2563,10 @@ static struct i2c_board_info aux2_i2c_devices[] = {
 		.type         = "taos",
 		.addr         = 0x39,
 	},
+	
+};
+
+static struct i2c_board_info aux2_i2c_devices[] = {
 #ifndef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C
 	{
 		I2C_BOARD_INFO("akm8973", 0x1c),
@@ -2702,6 +2706,7 @@ static struct platform_device *devices[] __initdata = {
 	&msm_camera_sensor_vb6801,
 #endif
 	&msm_bluesleep_device,
+	&msm_bcmsleep_device,     //compatible of qualcomm and broadcomm bluetooth chip     ZTE_BT_QXX_20101207
 #ifdef CONFIG_ARCH_MSM7X27
 	&msm_kgsl_3d0,
 #endif
@@ -3244,12 +3249,12 @@ extern void  __init msm_init_pmic_vibrator(void);
 
 	*offset += count;
 	return count;
-}*/
+}
 
 static struct file_operations debug_global_file_ops = {
 	.owner = THIS_MODULE,
 	.read = debug_global_read,
-};
+};*/
 #endif // CONFIG_ZTE_PLATFORM
 
 static void msm7x27_wlan_init(void)
@@ -3371,6 +3376,10 @@ static void __init msm7x2x_init(void)
 #endif
 	msm_device_i2c_init();
 	i2c_register_board_info(0, i2c_devices, ARRAY_SIZE(i2c_devices));
+#ifdef CONFIG_ZTE_PLATFORM
+	i2c_register_board_info(1, aux_i2c_devices, ARRAY_SIZE(aux_i2c_devices));
+	i2c_register_board_info(2, aux2_i2c_devices, ARRAY_SIZE(aux2_i2c_devices));
+#endif
 
 #ifdef CONFIG_SURF_FFA_GPIO_KEYPAD
 	if (machine_is_msm7x25_ffa() || machine_is_msm7x27_ffa())
@@ -3587,7 +3596,7 @@ MACHINE_START(BLADE, "blade")
 #endif
 	.boot_params	= PHYS_OFFSET + 0x100,
 #ifdef CONFIG_ZTE_PLATFORM
-        .fixup          = zte_fixup,
+//        .fixup          = zte_fixup,
 #endif
 	.map_io		= msm7x2x_map_io,
 	.init_irq	= msm7x2x_init_irq,
