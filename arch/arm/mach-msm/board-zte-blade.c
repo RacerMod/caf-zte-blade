@@ -1200,6 +1200,8 @@ static struct synaptics_rmi4_data synaptics_ts_data = {
 	.gpio_irq = 29,
 };
 #endif
+#endif //CONFIG-ZTE-PLATFORM
+
 static struct i2c_board_info i2c_devices[] = {
 #ifdef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C   
 	{
@@ -1212,9 +1214,6 @@ static struct i2c_board_info i2c_devices[] = {
 		.addr = 0x1d,
 	},
 #endif
-#endif //CONFIG-ZTE-PLATFORM
-
-static struct i2c_board_info i2c_devices[] = {
 #ifdef CONFIG_MT9D112
 	{
 		I2C_BOARD_INFO("mt9d112", 0x78 >> 1),
