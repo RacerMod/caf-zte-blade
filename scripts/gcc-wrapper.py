@@ -66,6 +66,7 @@ allowed_warnings = set([
     "sched.c:3930",
     "pm_qos_params.c:133",
     "bootmem.c:421",
+    "file.c:2052",
  ])
 
 # Capture the name of the object file, can find it.
