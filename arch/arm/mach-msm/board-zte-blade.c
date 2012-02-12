@@ -2634,7 +2634,6 @@ static struct i2c_board_info aux2_i2c_devices[] = {
 	},
 #endif
 };
-#endif
 
 static struct i2c_gpio_platform_data aux_i2c_gpio_data = {
 	.sda_pin		= 93,
