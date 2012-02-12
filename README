@@ -1,3 +1,6 @@
+Currently this kernel is capable of doing one thing: telling dmesg it has ZTE USB Mass storage. Which is good, but not for a phone. There is a bug or likely multiple bugs that keep this from starting. We need to find out why, somebody got a JTAG?
+
+---------------------
 	Linux kernel release 2.6.xx <http://kernel.org/>
 
 These are the release notes for Linux version 2.6.  Read them carefully,
