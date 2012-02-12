@@ -2607,6 +2607,67 @@ static struct platform_device msm_wlan_ar6000_pm_device = {
 /* ATHENV */
 #endif
 
+#ifdef CONFIG_ZTE_PLATFORM
+static struct i2c_board_info aux_i2c_devices[] = {
+	{
+		I2C_BOARD_INFO("si4708", 0x10),
+	},
+	
+	{
+		.type         = "taos",
+		.addr         = 0x39,
+	},
+	
+};
+
+static struct i2c_board_info aux2_i2c_devices[] = {
+#ifndef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C
+	{
+		I2C_BOARD_INFO("akm8973", 0x1c),
+	},
+#endif
+#ifndef CONFIG_GSENSORS_FROM_AUXI2C_TO_I2C
+	{
+		.type = "accelerator", 
+		.addr = 0x1d,
+	},
+#endif
+};
+#endif
+
+static struct i2c_gpio_platform_data aux_i2c_gpio_data = {
+	.sda_pin		= 93,
+	.scl_pin		= 92,
+	.sda_is_open_drain	= 1,
+	.scl_is_open_drain	= 1,
+	.udelay			= 40,
+};
+
+static struct platform_device aux_i2c_gpio_device = {
+	.name		= "i2c-gpio",
+	.id		= 1,
+	.dev		= {
+		.platform_data	= &aux_i2c_gpio_data
+	},
+};
+
+static struct i2c_gpio_platform_data aux2_i2c_gpio_data = {
+	.sda_pin		= 109,
+	.scl_pin		= 107,
+	.sda_is_open_drain	= 0,
+	.scl_is_open_drain	= 1,
+	.udelay			= 2,
+};
+
+static struct platform_device aux2_i2c_gpio_device = {
+	.name		= "i2c-gpio",
+	.id		= 2,
+	.dev		= {
+		.platform_data	= &aux2_i2c_gpio_data
+	},
+};
+#endif //CONFIG_ZTE_PLATFORM
+
 static struct platform_device *devices[] __initdata = {
 #ifdef CONFIG_ZTE_PLATFORM
         /* ATHENV */
@@ -2787,69 +2848,6 @@ static void __init msm_fb_add_devices(void)
 	msm_fb_register_device("pmdh", 0);
 	msm_fb_register_device("lcdc", &lcdc_pdata);
 }
-
-#ifdef CONFIG_ZTE_PLATFORM
-static struct i2c_board_info aux_i2c_devices[] = {
-	{
-		I2C_BOARD_INFO("si4708", 0x10),
-	},
-	
-	{
-		.type         = "taos",
-		.addr         = 0x39,
-	},
-	
-};
-
-static struct i2c_board_info aux2_i2c_devices[] = {
-#ifndef CONFIG_MSENSORS_FROM_AUXI2C_TO_I2C
-	{
-		I2C_BOARD_INFO("akm8973", 0x1c),
-	},
-#endif
-#ifndef CONFIG_GSENSORS_FROM_AUXI2C_TO_I2C
-	{
-		.type = "accelerator", 
-		.addr = 0x1d,
-	},
-#endif
-};
-#endif
-
-static struct i2c_gpio_platform_data aux_i2c_gpio_data = {
-	.sda_pin		= 93,
-	.scl_pin		= 92,
-	.sda_is_open_drain	= 1,
-	.scl_is_open_drain	= 1,
-	.udelay			= 40,
-};
-
-static struct platform_device aux_i2c_gpio_device = {
-	.name		= "i2c-gpio",
-	.id		= 1,
-	.dev		= {
-		.platform_data	= &aux_i2c_gpio_data
-	},
-};
-
-
-
-static struct i2c_gpio_platform_data aux2_i2c_gpio_data = {
-	.sda_pin		= 109,
-	.scl_pin		= 107,
-	.sda_is_open_drain	= 0,
-	.scl_is_open_drain	= 1,
-	.udelay			= 2,
-};
-
-static struct platform_device aux2_i2c_gpio_device = {
-	.name		= "i2c-gpio",
-	.id		= 2,
-	.dev		= {
-		.platform_data	= &aux2_i2c_gpio_data
-	},
-};
-#endif //CONFIG_ZTE_PLATFORM
 
 extern struct sys_timer msm_timer;
 
