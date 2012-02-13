@@ -1391,6 +1391,8 @@ static struct i2c_board_info i2c_devices[] = {
 #endif
 };
 
+#ifdef CONFIG_MSM_CAMERA
+
 static uint32_t camera_off_gpio_table[] = {
 	/* parallel CAMERA interfaces */
 #ifdef CONFIG_ZTE_PLATFORM
@@ -1549,6 +1551,8 @@ static void config_camera_off_gpios(void)
 	config_gpio_table(camera_off_gpio_table,
 		ARRAY_SIZE(camera_off_gpio_table));
 }
+
+#endif
 
 /*
  * Commented by zh.shj, ZTE_MSM_CAMERA_ZHSHJ_001
@@ -2057,6 +2061,7 @@ int msm_camera_clk_switch(const struct msm_camera_sensor_info *data,
     return rc;
 }
 
+#ifdef CONFIG_MSM_CAMERA
 static struct msm_camera_device_platform_data msm_camera_device_data = {
 	.camera_gpio_on  = config_camera_on_gpios,
 	.camera_gpio_off = config_camera_off_gpios,
@@ -2082,6 +2087,8 @@ static struct msm_camera_sensor_flash_src msm_flash_src = {
 	._fsrc.pmic_src.led_src_2 = 0,
 	._fsrc.pmic_src.pmic_set_current = pmic_set_flash_led_current,
 };
+
+#endif
 
 #ifdef CONFIG_MT9D112
 static struct msm_camera_sensor_flash_data flash_mt9d112 = {
