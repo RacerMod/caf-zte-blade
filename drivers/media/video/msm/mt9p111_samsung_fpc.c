@@ -620,35 +620,35 @@ static int32_t mt9p111_set_exposure_compensation(int8_t exposure)
 
     switch (exposure)
     {
-        case CAMERA_EXPOSURE_0:
+        case CAMERA_EXPOSURE_COMPENSATION_LV0:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.exposure_tbl[0],
                                          mt9p111_regs.exposure_tbl_sz[0]);
         }
         break;
 
-        case CAMERA_EXPOSURE_1:
+        case CAMERA_EXPOSURE_COMPENSATION_LV1:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.exposure_tbl[1],
                                          mt9p111_regs.exposure_tbl_sz[1]);
         }
         break;
 
-        case CAMERA_EXPOSURE_2:
+        case CAMERA_EXPOSURE_COMPENSATION_LV2:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.exposure_tbl[2],
                                          mt9p111_regs.exposure_tbl_sz[2]);
         }
         break;
         
-        case CAMERA_EXPOSURE_3:
+        case CAMERA_EXPOSURE_COMPENSATION_LV3:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.exposure_tbl[3],
                                          mt9p111_regs.exposure_tbl_sz[3]);
         }
         break; 
 
-        case CAMERA_EXPOSURE_4:
+        case CAMERA_EXPOSURE_COMPENSATION_LV4:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.exposure_tbl[4],
                                          mt9p111_regs.exposure_tbl_sz[4]);
@@ -1193,35 +1193,35 @@ static int32_t mt9p111_set_wb(int8_t wb_mode)
 
     switch (wb_mode)
     {
-        case CAMERA_WB_MODE_AWB:
+        case CAMERA_WB_AUTO:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.wb_auto_tbl, 
                                          mt9p111_regs.wb_auto_tbl_sz);
         }
         break;
 
-        case CAMERA_WB_MODE_SUNLIGHT:
+        case CAMERA_WB_DAYLIGHT:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.wb_daylight_tbl,
                                          mt9p111_regs.wb_daylight_tbl_sz);
         }
         break;
 
-        case CAMERA_WB_MODE_INCANDESCENT:
+        case CAMERA_WB_INCANDESCENT:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.wb_incandescent_tbl,
                                          mt9p111_regs.wb_incandescent_tbl_sz);
         }
         break;
         
-        case CAMERA_WB_MODE_FLUORESCENT:
+        case CAMERA_WB_FLUORESCENT:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.wb_flourescant_tbl,
                                          mt9p111_regs.wb_flourescant_tbl_sz);
         }
         break; 
 
-        case CAMERA_WB_MODE_CLOUDY:
+        case CAMERA_WB_CLOUDY_DAYLIGHT:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.wb_cloudy_tbl,
                                          mt9p111_regs.wb_cloudy_tbl_sz);
@@ -1246,35 +1246,35 @@ static int32_t mt9p111_set_contrast(int8_t contrast)
 
     switch (contrast)
     {
-        case CAMERA_CONTRAST_0:
+        case CAMERA_CONTRAST_LV0:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.contrast_tbl[0],
                                          mt9p111_regs.contrast_tbl_sz[0]);
         }
         break;
 
-        case CAMERA_CONTRAST_1:
+        case CAMERA_CONTRAST_LV1:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.contrast_tbl[1],
                                          mt9p111_regs.contrast_tbl_sz[1]);
         }
         break;
 
-        case CAMERA_CONTRAST_2:
+        case CAMERA_CONTRAST_LV2:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.contrast_tbl[2],
                                          mt9p111_regs.contrast_tbl_sz[2]);
         }
         break;
         
-        case CAMERA_CONTRAST_3:
+        case CAMERA_CONTRAST_LV3:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.contrast_tbl[3],
                                          mt9p111_regs.contrast_tbl_sz[3]);
         }
         break; 
 
-        case CAMERA_CONTRAST_4:
+        case CAMERA_CONTRAST_LV4:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.contrast_tbl[4],
                                          mt9p111_regs.contrast_tbl_sz[4]);
@@ -1309,49 +1309,49 @@ static int32_t mt9p111_set_brightness(int8_t brightness)
 
     switch (brightness)
     {
-        case CAMERA_BRIGHTNESS_0:
+        case CAMERA_BRIGHTNESS_LV0:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[0],
                                          mt9p111_regs.brightness_tbl_sz[0]);
         }
         break;
 
-        case CAMERA_BRIGHTNESS_1:
+        case CAMERA_BRIGHTNESS_LV1:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[1],
                                          mt9p111_regs.brightness_tbl_sz[1]);
         }
         break;
 
-        case CAMERA_BRIGHTNESS_2:
+        case CAMERA_BRIGHTNESS_LV2:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[2],
                                          mt9p111_regs.brightness_tbl_sz[2]);
         }
         break;
         
-        case CAMERA_BRIGHTNESS_3:
+        case CAMERA_BRIGHTNESS_LV3:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[3],
                                          mt9p111_regs.brightness_tbl_sz[3]);
         }
         break; 
 
-        case CAMERA_BRIGHTNESS_4:
+        case CAMERA_BRIGHTNESS_LV4:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[4],
                                          mt9p111_regs.brightness_tbl_sz[4]);
         }
         break;
         
-        case CAMERA_BRIGHTNESS_5:
+        case CAMERA_BRIGHTNESS_LV5:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[5],
                                          mt9p111_regs.brightness_tbl_sz[5]);
         }
         break;
         
-        case CAMERA_BRIGHTNESS_6:
+        case CAMERA_BRIGHTNESS_LV6:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.brightness_tbl[6],
                                          mt9p111_regs.brightness_tbl_sz[6]);
@@ -1376,35 +1376,35 @@ static int32_t mt9p111_set_saturation(int8_t saturation)
 
     switch (saturation)
     {
-        case CAMERA_SATURATION_0:
+        case CAMERA_SATURATION_LV0:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.saturation_tbl[0],
                                          mt9p111_regs.saturation_tbl_sz[0]);
         }
         break;
 
-        case CAMERA_SATURATION_1:
+        case CAMERA_SATURATION_LV1:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.saturation_tbl[1],
                                          mt9p111_regs.saturation_tbl_sz[1]);
         }
         break;
 
-        case CAMERA_SATURATION_2:
+        case CAMERA_SATURATION_LV2:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.saturation_tbl[2],
                                          mt9p111_regs.saturation_tbl_sz[2]);
         }
         break;
         
-        case CAMERA_SATURATION_3:
+        case CAMERA_SATURATION_LV3:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.saturation_tbl[3],
                                          mt9p111_regs.saturation_tbl_sz[3]);
         }
         break; 
 
-        case CAMERA_SATURATION_4:
+        case CAMERA_SATURATION_LV4:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.saturation_tbl[4],
                                          mt9p111_regs.saturation_tbl_sz[4]);
@@ -1442,35 +1442,35 @@ static int32_t mt9p111_set_sharpness(int8_t sharpness)
       */
     switch (sharpness)
     {
-        case CAMERA_SHARPNESS_0:
+        case CAMERA_SHARPNESS_LV0:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.sharpness_tbl[0],
                                          mt9p111_regs.sharpness_tbl_sz[0]);
         }
         break;
 
-        case CAMERA_SHARPNESS_1:
+        case CAMERA_SHARPNESS_LV1:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.sharpness_tbl[1],
                                          mt9p111_regs.sharpness_tbl_sz[1]);
         }
         break;
 
-        case CAMERA_SHARPNESS_2:
+        case CAMERA_SHARPNESS_LV2:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.sharpness_tbl[2],
                                          mt9p111_regs.sharpness_tbl_sz[2]);
         }
         break;
         
-        case CAMERA_SHARPNESS_3:
+        case CAMERA_SHARPNESS_LV3:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.sharpness_tbl[3],
                                          mt9p111_regs.sharpness_tbl_sz[3]);
         }
         break; 
 
-        case CAMERA_SHARPNESS_4:
+        case CAMERA_SHARPNESS_LV4:
         {
             rc = mt9p111_i2c_write_table(mt9p111_regs.sharpness_tbl[4],
                                          mt9p111_regs.sharpness_tbl_sz[4]);
