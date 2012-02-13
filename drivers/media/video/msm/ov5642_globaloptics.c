@@ -455,7 +455,7 @@ static long ov5642_set_brightness(int8_t brightness)
 
     switch(brightness)
     {
-        case CAMERA_BRIGHTNESS_0:
+        case CAMERA_BRIGHTNESS_LV0:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -491,7 +491,7 @@ static long ov5642_set_brightness(int8_t brightness)
         }
         break;
 
-        case CAMERA_BRIGHTNESS_1:
+        case CAMERA_BRIGHTNESS_LV1:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -527,7 +527,7 @@ static long ov5642_set_brightness(int8_t brightness)
         }
         break;
 
-        case CAMERA_BRIGHTNESS_2:
+        case CAMERA_BRIGHTNESS_LV2:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -563,7 +563,7 @@ static long ov5642_set_brightness(int8_t brightness)
         }
         break;
 
-        case CAMERA_BRIGHTNESS_3:
+        case CAMERA_BRIGHTNESS_LV3:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -598,7 +598,7 @@ static long ov5642_set_brightness(int8_t brightness)
         }
         break;
 
-        case CAMERA_BRIGHTNESS_4:
+        case CAMERA_BRIGHTNESS_LV4:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -633,7 +633,7 @@ static long ov5642_set_brightness(int8_t brightness)
         }
         break;
 
-        case CAMERA_BRIGHTNESS_5:
+        case CAMERA_BRIGHTNESS_LV5:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -668,7 +668,7 @@ static long ov5642_set_brightness(int8_t brightness)
         }
         break;
 
-        case CAMERA_BRIGHTNESS_6:
+        case CAMERA_BRIGHTNESS_LV6:
         {
             tmp_reg = 0;
             rc = ov5642_i2c_read(ov5642_client->addr, 0x5001, &tmp_reg, BYTE_LEN);
@@ -722,7 +722,7 @@ static long ov5642_set_contrast(int8_t contrast_val)
 
     switch(contrast_val)
     {
-        case CAMERA_CONTRAST_0:
+        case CAMERA_CONTRAST_LV0:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -760,7 +760,7 @@ static long ov5642_set_contrast(int8_t contrast_val)
         }
         break;
 
-        case CAMERA_CONTRAST_1:
+        case CAMERA_CONTRAST_LV1:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -798,7 +798,7 @@ static long ov5642_set_contrast(int8_t contrast_val)
         }
         break;
 
-        case CAMERA_CONTRAST_2:
+        case CAMERA_CONTRAST_LV2:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -836,7 +836,7 @@ static long ov5642_set_contrast(int8_t contrast_val)
         }
         break;
 
-        case CAMERA_CONTRAST_3:
+        case CAMERA_CONTRAST_LV3:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -874,7 +874,7 @@ static long ov5642_set_contrast(int8_t contrast_val)
         }
         break;
 
-        case CAMERA_CONTRAST_4:
+        case CAMERA_CONTRAST_LV4:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -930,7 +930,7 @@ static long ov5642_set_saturation(int8_t saturation_val)
 
     switch(saturation_val)
     {
-        case CAMERA_SATURATION_0:
+        case CAMERA_SATURATION_LV0:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -963,7 +963,7 @@ static long ov5642_set_saturation(int8_t saturation_val)
         }
         break;
 
-        case CAMERA_SATURATION_1:
+        case CAMERA_SATURATION_LV1:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -996,7 +996,7 @@ static long ov5642_set_saturation(int8_t saturation_val)
         }
         break;
         
-        case CAMERA_SATURATION_2:
+        case CAMERA_SATURATION_LV2:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -1029,7 +1029,7 @@ static long ov5642_set_saturation(int8_t saturation_val)
         }
         break;
                
-        case CAMERA_SATURATION_3:
+        case CAMERA_SATURATION_LV3:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -1062,7 +1062,7 @@ static long ov5642_set_saturation(int8_t saturation_val)
         }
         break;
         
-        case CAMERA_SATURATION_4:
+        case CAMERA_SATURATION_LV4:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x5001, 0x00ff, WORD_LEN);
             if (rc < 0)
@@ -1161,7 +1161,7 @@ static long ov5642_set_wb(int8_t wb_mode)
 
     switch(wb_mode)
     {
-        case CAMERA_WB_MODE_AWB:
+        case CAMERA_WB_AUTO:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3406, 0x0000, WORD_LEN);
             if (rc < 0)
@@ -1171,7 +1171,7 @@ static long ov5642_set_wb(int8_t wb_mode)
         }
         break;
 
-        case CAMERA_WB_MODE_SUNLIGHT:
+        case CAMERA_WB_DAYLIGHT:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3406 ,0x0001, WORD_LEN);
             if (rc < 0)
@@ -1211,7 +1211,7 @@ static long ov5642_set_wb(int8_t wb_mode)
         }
         break;
 
-        case CAMERA_WB_MODE_INCANDESCENT:
+        case CAMERA_WB_INCANDESCENT:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3406 ,0x0001, WORD_LEN);
             if (rc < 0)
@@ -1251,7 +1251,7 @@ static long ov5642_set_wb(int8_t wb_mode)
         }
         break;
         
-        case CAMERA_WB_MODE_FLUORESCENT:
+        case CAMERA_WB_FLUORESCENT:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3406 ,0x0001, WORD_LEN);
             if (rc < 0)
@@ -1291,7 +1291,7 @@ static long ov5642_set_wb(int8_t wb_mode)
         }
         break; 
 
-        case CAMERA_WB_MODE_CLOUDY:
+        case CAMERA_WB_CLOUDY_DAYLIGHT:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3406 ,0x0001, WORD_LEN);
             if (rc < 0)
@@ -1331,7 +1331,7 @@ static long ov5642_set_wb(int8_t wb_mode)
         }
         break;
 
-        case CAMERA_WB_MODE_NIGHT:
+        case CAMERA_WB_TWILIGHT: //oh btw fuck that goddamn movie. Vampires WTF?
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3406 ,0x0000, WORD_LEN);
             if (rc < 0)
@@ -1359,7 +1359,7 @@ static long ov5642_set_wb(int8_t wb_mode)
         }     
     }
 
-    if(wb_mode != CAMERA_WB_MODE_NIGHT)
+    if(wb_mode != CAMERA_WB_TWILIGHT)
     {
         rc = ov5642_i2c_write(ov5642_client->addr, 0x3010, 0x0010, WORD_LEN);
         if (rc < 0)
@@ -1474,6 +1474,7 @@ static int32_t ov5642_set_aec_rio(aec_rio_cfg position)
     return rc;
 }
 
+#ifdef COMPATIBLE_WITH_THIS_KERNEL_NEED_ISO_CONFIG
 /*
  * ISO Setting
  */
@@ -1576,6 +1577,8 @@ static int32_t ov5642_set_iso(int8_t iso_val)
 	return rc;
 } 
 
+#endif
+
 /*
  * Antibanding Setting
  */
@@ -1587,13 +1590,13 @@ static int32_t  ov5642_set_antibanding(int8_t antibanding)
 
     switch (antibanding)
     {
-        case CAMERA_ANTIBANDING_SET_OFF:
+        case CAMERA_ANTIBANDING_OFF:
         {
             CCRT("%s: CAMERA_ANTIBANDING_SET_OFF NOT supported!\n", __func__);
         }
         break;
 
-        case CAMERA_ANTIBANDING_SET_60HZ:
+        case CAMERA_ANTIBANDING_60HZ:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3C01, 0x0080, WORD_LEN);
             if (rc < 0)
@@ -1623,7 +1626,7 @@ static int32_t  ov5642_set_antibanding(int8_t antibanding)
         }            
         break;
 
-        case CAMERA_ANTIBANDING_SET_50HZ:
+        case CAMERA_ANTIBANDING_50HZ:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3C01, 0x0080, WORD_LEN);
             if (rc < 0)
@@ -1653,7 +1656,7 @@ static int32_t  ov5642_set_antibanding(int8_t antibanding)
         }
         break;
 
-        case CAMERA_ANTIBANDING_SET_AUTO:
+        case CAMERA_ANTIBANDING_AUTO:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3623, 0x0001, WORD_LEN);
             if (rc < 0)
@@ -1754,7 +1757,7 @@ static int32_t ov5642_set_sharpness(int8_t sharpness)
        
     switch (sharpness)
     {
-        case CAMERA_SHARPNESS_0:
+        case CAMERA_SHARPNESS_LV0:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x530A ,0x0008, WORD_LEN);
             if (rc < 0)
@@ -1774,7 +1777,7 @@ static int32_t ov5642_set_sharpness(int8_t sharpness)
         }
         break;
 
-        case CAMERA_SHARPNESS_1:
+        case CAMERA_SHARPNESS_LV1:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x530A ,0x0008, WORD_LEN);
             if (rc < 0)
@@ -1794,7 +1797,7 @@ static int32_t ov5642_set_sharpness(int8_t sharpness)
         }
         break;
 
-        case CAMERA_SHARPNESS_2:
+        case CAMERA_SHARPNESS_LV2:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x530A ,0x0008, WORD_LEN);
             if (rc < 0)
@@ -1814,7 +1817,7 @@ static int32_t ov5642_set_sharpness(int8_t sharpness)
         }
         break;
         
-        case CAMERA_SHARPNESS_3:
+        case CAMERA_SHARPNESS_LV3:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x530A ,0x0008, WORD_LEN);
             if (rc < 0)
@@ -1834,7 +1837,7 @@ static int32_t ov5642_set_sharpness(int8_t sharpness)
         }
         break; 
 
-        case CAMERA_SHARPNESS_4:
+        case CAMERA_SHARPNESS_LV4:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x530A ,0x0008, WORD_LEN);
             if (rc < 0)
@@ -1873,7 +1876,7 @@ static long ov5642_set_exposure_compensation(int8_t exposure)
 
     switch(exposure)
     {
-        case CAMERA_EXPOSURE_0:
+        case CAMERA_EXPOSURE_COMPENSATION_LV0:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3a0f, 0x0038, WORD_LEN);
             if (rc < 0)
@@ -1908,7 +1911,7 @@ static long ov5642_set_exposure_compensation(int8_t exposure)
         }
         break;
         
-        case CAMERA_EXPOSURE_1:
+        case CAMERA_EXPOSURE_COMPENSATION_LV1:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3a0f, 0x0040, WORD_LEN);
             if (rc < 0)
@@ -1943,7 +1946,7 @@ static long ov5642_set_exposure_compensation(int8_t exposure)
         }
         break;
 
-        case CAMERA_EXPOSURE_2:
+        case CAMERA_EXPOSURE_COMPENSATION_LV2:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3a0f, 0x0048, WORD_LEN);
             if (rc < 0)
@@ -1978,7 +1981,7 @@ static long ov5642_set_exposure_compensation(int8_t exposure)
         }
         break;
 
-        case CAMERA_EXPOSURE_3:
+        case CAMERA_EXPOSURE_COMPENSATION_LV3:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3a0f, 0x0050, WORD_LEN);
             if (rc < 0)
@@ -2013,7 +2016,7 @@ static long ov5642_set_exposure_compensation(int8_t exposure)
         }
         break;
 
-        case CAMERA_EXPOSURE_4:
+        case CAMERA_EXPOSURE_COMPENSATION_LV4:
         {
             rc = ov5642_i2c_write(ov5642_client->addr, 0x3a0f, 0x0058, WORD_LEN);
             if (rc < 0)
@@ -2636,7 +2639,7 @@ static long ov5642_set_effect(int32_t mode, int32_t effect)
         }
         break;
         
-        case CAMERA_EFFECT_BULISH:    
+        case CAMERA_EFFECT_BLUISH:    
         case CAMERA_EFFECT_GREENISH:
         case CAMERA_EFFECT_REDDISH:
         {
@@ -3283,7 +3286,7 @@ static int ov5642_sensor_config(void __user *argp)
 
         case CFG_SET_WB:
         {
-            rc = ov5642_set_wb(cfg_data.cfg.wb_mode);
+            rc = ov5642_set_wb(cfg_data.cfg.wb_val);
         }
         break;
 
@@ -3305,17 +3308,17 @@ static int ov5642_sensor_config(void __user *argp)
         }
         break;
 
-        case CFG_SET_AF:
+        case CFG_SET_AUTO_FOCUS:
         {
             rc = ov5642_af_trigger();
         }
         break;
 
-        case CFG_SET_ISO:
+/*        case CFG_SET_ISO:
         {
             rc = ov5642_set_iso(cfg_data.cfg.iso_val);
         }
-        break;
+        break;*/
 
         case CFG_SET_ANTIBANDING:
         {
@@ -3336,7 +3339,7 @@ static int ov5642_sensor_config(void __user *argp)
         break;
 
        
-        case CFG_SET_AEC_RIO:
+        case CFG_SET_TOUCHAEC:
         {
             rc = ov5642_set_aec_rio(cfg_data.cfg.aec_rio);
         }

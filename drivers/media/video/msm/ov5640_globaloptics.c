@@ -52,6 +52,7 @@ static DECLARE_WORK(ov5640_cb_work, ov5640_workqueue);
 #endif /* defined(OV5640_PROBE_WORKQUEUE) */
 
 #define ENOINIT 100 /*have not power up,so don't need to power down*/
+#define CDBG(fmt, args...) do { } while (0)
 
 /*
  * OV5640 Registers and their values
@@ -1867,7 +1868,7 @@ static int32_t ov5640_set_iso(int8_t iso_val)
             {
                return rc;
             }
-            #if 1 // Ö÷¹Û²âÊÔ°æ±¾ 2011-06-16 ken
+            #if 1 // \D6\F7\B9Û²\E2\CAÔ°æ±¾ 2011-06-16 ken
             rc = ov5640_i2c_write(ov5640_client->addr, 0x3A19 ,0x00f8, WORD_LEN);
             #else
             rc = ov5640_i2c_write(ov5640_client->addr, 0x3A19 ,0x0040, WORD_LEN);
@@ -2793,7 +2794,7 @@ static long ov5640_hw_ae_transfer(void)
         capture_exposure = g_preview_exposure * 42 / 28 ;
         //capture_exposure = g_preview_exposure;
         capture_exposure = capture_exposure * 1896 / 2844;
-#if 1 // Ö÷¹Û²âÊÔ°æ±¾ 2011-06-16 ken
+#if 1 // \D6\F7\B9Û²\E2\CAÔ°æ±¾ 2011-06-16 ken
         //kenxu add for reduce noise under dark condition
         if(gain > 32) //gain > 2x, gain / 2, exposure * 2;
         {

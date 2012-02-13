@@ -1490,6 +1490,8 @@ static int32_t mt9p111_set_sharpness(int8_t sharpness)
 /*
  * ISO Setting
  */
+
+#ifdef FIXED_ZTE_COMPATIBILITY_WITH_THIS
 static int32_t mt9p111_set_iso(int8_t iso_val)
 {
     int32_t rc = 0;
@@ -1732,8 +1734,8 @@ static int32_t mt9p111_set_iso(int8_t iso_val)
     mdelay(300);
 
     return rc;
-} 
-
+}
+#endif
 
 static int32_t mt9p111_set_aec_rio(aec_rio_cfg position)
 {	
@@ -1875,6 +1877,7 @@ static int32_t mt9p111_set_aec_rio(aec_rio_cfg position)
     return -EIO;
 }
 
+#ifdef FIXED_ZTE_COMPATIBILITY_WITH_THIS
 static int32_t mt9p111_set_anti_shake(int8_t antishake)
 {	
     int32_t rc = 0;	
@@ -1969,6 +1972,7 @@ static int32_t mt9p111_set_anti_shake(int8_t antishake)
     return rc;
    
 }
+#endif
 
 /*
  * Antibanding Setting
@@ -1981,13 +1985,13 @@ static int32_t mt9p111_set_antibanding(int8_t antibanding)
 
     switch (antibanding)
     {
-        case CAMERA_ANTIBANDING_SET_OFF:
+        case CAMERA_ANTIBANDING_OFF:
         {
             CCRT("%s: CAMERA_ANTIBANDING_SET_OFF NOT supported!\n", __func__);
         }
         break;
 
-        case CAMERA_ANTIBANDING_SET_60HZ:
+        case CAMERA_ANTIBANDING_60HZ:
         {
             rc = mt9p111_i2c_write(mt9p111_client->addr, 0x098E, 0x8417, WORD_LEN); // LOGICAL_ADDRESS_ACCESS [FD_MAX_NUM_AUTOCOR_FUNC_VALUES_TO_CHECK]
             if (rc < 0)
@@ -2012,7 +2016,7 @@ static int32_t mt9p111_set_antibanding(int8_t antibanding)
         }            
         break;
 
-        case CAMERA_ANTIBANDING_SET_50HZ:
+        case CAMERA_ANTIBANDING_50HZ:
         {
             rc = mt9p111_i2c_write(mt9p111_client->addr, 0x098E, 0x8417, WORD_LEN);	// LOGICAL_ADDRESS_ACCESS [FD_MAX_NUM_AUTOCOR_FUNC_VALUES_TO_CHECK]
             if (rc < 0)
@@ -2037,7 +2041,7 @@ static int32_t mt9p111_set_antibanding(int8_t antibanding)
         }
         break;
 
-        case CAMERA_ANTIBANDING_SET_AUTO:
+        case CAMERA_ANTIBANDING_AUTO:
         {
             rc = mt9p111_i2c_write(mt9p111_client->addr, 0x098E, 0x8417, WORD_LEN);	// LOGICAL_ADDRESS_ACCESS [FD_MAX_NUM_AUTOCOR_FUNC_VALUES_TO_CHECK]
             if (rc < 0)
@@ -2582,11 +2586,11 @@ int mt9p111_sensor_config(void __user *argp)
 
         case CFG_SET_WB:
         {
-            rc = mt9p111_set_wb(cfg_data.cfg.wb_mode);
+            rc = mt9p111_set_wb(cfg_data.cfg.wb_val); //Guess so?
         }
         break;
 
-        case CFG_SET_AF:
+        case CFG_SET_AUTO_FOCUS:
         {
             /*
                * ignore "rc"
@@ -2596,11 +2600,11 @@ int mt9p111_sensor_config(void __user *argp)
         }
         break;
 
-        case CFG_SET_ISO:
+/*        case CFG_SET_ISO:
         {
             rc = mt9p111_set_iso(cfg_data.cfg.iso_val);
         }
-        break;
+        break;*/
 
         case CFG_SET_ANTIBANDING:
         {
@@ -2649,17 +2653,17 @@ int mt9p111_sensor_config(void __user *argp)
         break;
 
         
-        case CFG_SET_AEC_RIO:        
+        case CFG_SET_TOUCHAEC:        
         {
             rc = mt9p111_set_aec_rio(cfg_data.cfg.aec_rio);        
         }        
         break;
 
-        case CFG_SET_ANTI_SHAKE:        
+        /*case CFG_SET_ANTI_SHAKE:        
         {
             rc = mt9p111_set_anti_shake(cfg_data.cfg.antishake);        
         }        
-        break;
+        break;*/
 
 #if 0
         /* For Auto Focus Only */
