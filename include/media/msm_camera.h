@@ -736,56 +736,6 @@ struct msm_snapshot_pp_status {
 #define CAMERA_EXPOSURE_COMPENSATION_LV3			-6
 #define CAMERA_EXPOSURE_COMPENSATION_LV4			-12
 
-#ifdef CONFIG_ZTE_PLATFORM
-/*
-* Commented by zh.shj ZTE
-*
-* Add definitions of
-* ISO values,
-* antibanding values,
-* sharpness
-*/
-#define CAMERA_ISO_SET_AUTO 0
-#define CAMERA_ISO_SET_HJR 1
-#define CAMERA_ISO_SET_100 2
-#define CAMERA_ISO_SET_200 3
-#define CAMERA_ISO_SET_400 4
-#define CAMERA_ISO_SET_800 5
-#define CAMERA_ISO_SET_MAX 6
-
-#define CAMERA_ANTIBANDING_SET_OFF 0
-#define CAMERA_ANTIBANDING_SET_60HZ 1
-#define CAMERA_ANTIBANDING_SET_50HZ 2
-#define CAMERA_ANTIBANDING_SET_AUTO 3
-#define CAMERA_ANTIBANDING_MAX 4
-
-/*
-* ZTE_CAM_LJ_20101214
-* add definitions of AntiShake values
-*/
-#define CAMERA_ANTISHAKE_OFF 0
-#define CAMERA_ANTISHAKE_ON 1
-
-/*
-* Commented by zh.shj
-*
-* Add definitions of
-* autofocus with keypress,
-* ISO
-*/
-#define CFG_SET_AF 30
-#define CFG_SET_ISO 31
-
-/*
-* ZTE_CAM_LJ_20101214
-* add Touch AF and AntiShake function
-*/
-#define CFG_SET_AEC_RIO 33
-#define CFG_SET_ANTI_SHAKE 34
-#define CFG_SEND_WB_INFO 28
-//#define CFG_MAX 29
-#endif // CONFIG_ZTE_PLATFORM
-
 
 struct sensor_pict_fps {
 	uint16_t prevfps;
