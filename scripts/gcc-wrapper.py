@@ -84,6 +84,7 @@ allowed_warnings = set([
     "xfrm_policy.c:2412",
     "xfrm_policy.c:1325",
     "mt9p111_mcnex.c:82",
+    "mt9p111_samsung_fpc.c:131",
  ])
 
 # Capture the name of the object file, can find it.
