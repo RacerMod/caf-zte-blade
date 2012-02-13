@@ -736,6 +736,28 @@ struct msm_snapshot_pp_status {
 #define CAMERA_EXPOSURE_COMPENSATION_LV3			-6
 #define CAMERA_EXPOSURE_COMPENSATION_LV4			-12
 
+/*
+ * Commented by zh.shj
+ *
+ * Add definitions of
+ * ISO values,
+ * antibanding values,
+ * sharpness
+ */
+#define CAMERA_ISO_SET_AUTO             0
+#define CAMERA_ISO_SET_HJR              1
+#define CAMERA_ISO_SET_100              2
+#define CAMERA_ISO_SET_200              3
+#define CAMERA_ISO_SET_400              4
+#define CAMERA_ISO_SET_800              5
+#define CAMERA_ISO_SET_MAX              6
+
+/*
+ * ZTE_CAM_LJ_20101214
+ * add definitions of AntiShake values
+ */
+#define CAMERA_ANTISHAKE_OFF            0
+#define CAMERA_ANTISHAKE_ON             1
 
 struct sensor_pict_fps {
 	uint16_t prevfps;
@@ -857,6 +879,17 @@ struct cord {
 	uint32_t y;
 };
 
+/*
+ * ZTE_CAM_LJ_20101214
+ * Add new type used for Touch AF function
+ */
+typedef struct {
+	uint16_t x;
+	uint16_t y;
+ uint16_t preview_width;
+ uint16_t preview_height;
+} aec_rio_cfg;
+
 struct sensor_cfg_data {
 	int cfgtype;
 	int mode;
@@ -873,6 +906,10 @@ struct sensor_cfg_data {
 		uint32_t pict_max_exp_lc;
 		uint16_t p_fps;
 		struct sensor_init_cfg init_info;
+		/* ZTE_ZT_CAM_20101026_04
+		 * add the interface of exposure compensation for foryo
+		 */
+		int8_t exposure;
 		struct sensor_pict_fps gfps;
 		struct exp_gain_cfg exp_gain;
 		struct focus_cfg focus;
@@ -894,6 +931,11 @@ struct sensor_cfg_data {
 		struct cord aec_cord;
 		int is_autoflash;
 		struct mirror_flip mirror_flip;
+		/*
+		 * ZTE_CAM_LJ_20101214
+		 * add variables used for Touch AF and AntiShake function
+		 */
+		aec_rio_cfg aec_rio;
 	} cfg;
 };
 
@@ -917,6 +959,18 @@ struct msm_actuator_get_info_t {
 	uint32_t f_pix_den;
 	uint32_t total_f_dist_num;
 	uint32_t total_f_dist_den;
+};
+
+/*
+ * Commented by zh.shj
+ * For msm_camera power mode control
+ */
+enum msm_camera_pwr_mode_t {
+    MSM_CAMERA_PWRUP_MODE = 0,
+    MSM_CAMERA_STANDBY_MODE,
+    MSM_CAMERA_NORMAL_MODE,
+    MSM_CAMERA_PWRDWN_MODE,
+    MSM_CAMERA_PWR_MODE_MAX
 };
 
 struct msm_actuator_cfg_data {

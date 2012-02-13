@@ -508,6 +508,25 @@ int msm_camera_drv_start(struct platform_device *dev,
 		int (*sensor_probe)(const struct msm_camera_sensor_info *,
 					struct msm_sensor_ctrl *));
 
+/*
+ * Commented by jia.jia, JIA_CAM_20100608
+ * modified for sensor adapter(mt9t11x-socket, mt9p111-socket, and ov5642)
+ */
+#if defined(CONFIG_SENSOR_ADAPTER)
+int msm_camera_dev_start(struct platform_device *dev,
+                                 int (*i2c_dev_probe_on)(void),
+                                 void (*i2c_dev_probe_off)(void),
+                                 int (*sensor_dev_probe)(const struct msm_camera_sensor_info *));
+#endif
+
+/*
+ * LIJING_CAM_20100610
+ * add interface for set sensor id
+ */
+#if defined(CONFIG_SENSOR_INFO)
+void msm_sensorinfo_set_sensor_id(uint16_t id);
+#endif
+
 enum msm_camio_clk_type {
 	CAMIO_VFE_MDC_CLK,
 	CAMIO_MDC_CLK,
@@ -592,18 +611,6 @@ enum msm_bus_perf_setting {
 	S_STEREO_CAPTURE,
 	S_DEFAULT,
 	S_EXIT
-};
-
-/*
- * Commented by zh.shj
- * For msm_camera power mode control
- */
-enum msm_camera_pwr_mode_t {
-    MSM_CAMERA_PWRUP_MODE = 0,
-    MSM_CAMERA_STANDBY_MODE,
-    MSM_CAMERA_NORMAL_MODE,
-    MSM_CAMERA_PWRDWN_MODE,
-    MSM_CAMERA_PWR_MODE_MAX
 };
 
 int msm_camio_enable(struct platform_device *dev);
