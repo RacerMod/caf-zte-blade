@@ -93,6 +93,7 @@ allowed_warnings = set([
     "s5k5cagx_mcnex_qtech_fpc.c:161",
     "msm_camera.c:59",
     "ov5640_globaloptics.c:143",
+    "ov5640_globaloptics.c:144",
  ])
 
 # Capture the name of the object file, can find it.
