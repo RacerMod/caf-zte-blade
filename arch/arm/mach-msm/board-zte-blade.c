@@ -1391,7 +1391,6 @@ static struct i2c_board_info i2c_devices[] = {
 #endif
 };
 
-#ifdef CONFIG_MSM_CAMERA
 static uint32_t camera_off_gpio_table[] = {
 	/* parallel CAMERA interfaces */
 #ifdef CONFIG_ZTE_PLATFORM
@@ -1551,7 +1550,6 @@ static void config_camera_off_gpios(void)
 		ARRAY_SIZE(camera_off_gpio_table));
 }
 
-#ifdef CONFIG_ZTE_PLATFORM
 /*
  * Commented by zh.shj, ZTE_MSM_CAMERA_ZHSHJ_001
  *
@@ -1756,7 +1754,7 @@ int32_t msm_camera_power_backend(enum msm_camera_pwr_mode_t pwr_mode)
 
     return 0;
 }
-#else
+#else //defined (CONFIG_CAMERA_N880)
 
 #define MSM_CAMERA_POWER_BACKEND_IOVDD_VAL      (2600)
 
@@ -1902,7 +1900,7 @@ int32_t msm_camera_power_backend(enum msm_camera_pwr_mode_t pwr_mode)
 
     return 0;
 }
-#endif
+#endif //defined (CONFIG_CAMERA_N880)
 
 /*
  * Commented by zh.shj
@@ -2058,7 +2056,6 @@ int msm_camera_clk_switch(const struct msm_camera_sensor_info *data,
 
     return rc;
 }
-#endif
 
 static struct msm_camera_device_platform_data msm_camera_device_data = {
 	.camera_gpio_on  = config_camera_on_gpios,
@@ -2069,7 +2066,7 @@ static struct msm_camera_device_platform_data msm_camera_device_data = {
 	.ioext.appsz  = MSM_CLK_CTL_SIZE,
 };
 
-int pmic_set_flash_led_current(enum pmic8058_leds id, unsigned mA)
+static int pmic_set_flash_led_current(enum pmic8058_leds id, unsigned mA)
 {
 	int rc;
 	rc = pmic_flash_led_set_current(mA);
@@ -2108,7 +2105,7 @@ static struct platform_device msm_camera_sensor_mt9d112 = {
 		.platform_data = &msm_camera_sensor_mt9d112_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9D112
 
 #ifdef CONFIG_S5K3E2FX
 static struct msm_camera_sensor_flash_data flash_s5k3e2fx = {
@@ -2132,7 +2129,32 @@ static struct platform_device msm_camera_sensor_s5k3e2fx = {
 		.platform_data = &msm_camera_sensor_s5k3e2fx_data,
 	},
 };
-#endif
+#endif //CONFIG_S5K3E2FX
+
+#ifdef CONFIG_S5K5CAGX
+static struct msm_camera_sensor_flash_data flash_s5k5cagx = {
+	.flash_type = MSM_CAMERA_FLASH_LED,
+	.flash_src  = &msm_flash_src
+};
+
+static struct msm_camera_sensor_info msm_camera_sensor_s5k5cagx_data = {
+	.sensor_name    = "s5k5cagx",
+	.sensor_reset   = 2,
+	.sensor_pwd     = 1,
+	.vcm_pwd        = 0,
+	.vcm_enable     = 0,
+	.pdata          = &msm_camera_device_data,
+	.flash_data     = &flash_s5k5cagx
+};
+
+static struct platform_device msm_camera_sensor_s5k5cagx = {
+	.name      = "msm_camera_s5k5cagx",
+	.dev       = {
+		.platform_data = &msm_camera_sensor_s5k5cagx_data,
+	},
+};
+#endif //CONFIG_S5K5CAGX
+
 
 #ifdef CONFIG_MT9P012
 static struct msm_camera_sensor_flash_data flash_mt9p012 = {
@@ -2156,7 +2178,7 @@ static struct platform_device msm_camera_sensor_mt9p012 = {
 		.platform_data = &msm_camera_sensor_mt9p012_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9P012
 
 #ifdef CONFIG_MT9P012_KM
 static struct msm_camera_sensor_flash_data flash_mt9p012_km = {
@@ -2180,7 +2202,7 @@ static struct platform_device msm_camera_sensor_mt9p012_km = {
 		.platform_data = &msm_camera_sensor_mt9p012_km_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9P012_KM
 
 #ifdef CONFIG_MT9T013
 static struct msm_camera_sensor_flash_data flash_mt9t013 = {
@@ -2204,7 +2226,7 @@ static struct platform_device msm_camera_sensor_mt9t013 = {
 		.platform_data = &msm_camera_sensor_mt9t013_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9T013
 
 #ifdef CONFIG_VB6801
 static struct msm_camera_sensor_flash_data flash_vb6801 = {
@@ -2228,9 +2250,8 @@ static struct platform_device msm_camera_sensor_vb6801 = {
 		.platform_data = &msm_camera_sensor_vb6801_data,
 	},
 };
-#endif
-#endif
-#ifdef CONFIG_ZTE_PLATFORM
+#endif //CONFIG_VB6801
+
 #ifdef CONFIG_MT9P111
 /*
  * Commented by zhang.shengjie
@@ -2245,7 +2266,7 @@ static struct platform_device msm_camera_sensor_vb6801 = {
  * Commented by chg
  * merge 5320 for camera flash.
  */ 
-static struct msm_camera_sensor_flash_data  = {
+static struct msm_camera_sensor_flash_data flash_mt9p111 = {
 	.flash_type = MSM_CAMERA_FLASH_NONE,
 	.flash_src  = &msm_flash_src
 }; 
@@ -2257,7 +2278,7 @@ static struct msm_camera_sensor_info msm_camera_sensor_mt9p111_data = {
 	.vcm_pwd        = 0,
 	.vcm_enable     = 0,
 	.pdata          = &msm_camera_device_data,
-	.flash_data     = &
+	.flash_data     = &flash_mt9p111
 };
 
 static struct platform_device msm_camera_sensor_mt9p111 = {
@@ -2266,7 +2287,7 @@ static struct platform_device msm_camera_sensor_mt9p111 = {
 		.platform_data = &msm_camera_sensor_mt9p111_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9P111
 
 #ifdef CONFIG_MT9T11X
 /*
@@ -2304,7 +2325,7 @@ static struct platform_device msm_camera_sensor_mt9t11x = {
 		.platform_data = &msm_camera_sensor_mt9t11x_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9T11X
 
 #ifdef CONFIG_MT9D115
 /*
@@ -2331,7 +2352,7 @@ static struct platform_device msm_camera_sensor_mt9d115 = {
         .platform_data = &msm_camera_sensor_mt9d115_data,
     },
 };
-#endif
+#endif //CONFIG_MT9T11X
 
 #ifdef CONFIG_MT9V113
 /*
@@ -2366,7 +2387,7 @@ static struct platform_device msm_camera_sensor_mt9v113 = {
 		.platform_data = &msm_camera_sensor_mt9v113_data,
 	},
 };
-#endif
+#endif //CONFIG_MT9V113
 
 #ifdef CONFIG_OV5642
 /*
@@ -2403,7 +2424,7 @@ static struct platform_device msm_camera_sensor_ov5642 = {
 		.platform_data = &msm_camera_sensor_ov5642_data,
 	},
 };
-#endif
+#endif //CONFIG_OV5642
 
 #ifdef CONFIG_OV5640
 static struct msm_camera_sensor_flash_data flash_ov5640 = {
@@ -2427,7 +2448,7 @@ static struct platform_device msm_camera_sensor_ov5640 = {
 		.platform_data = &msm_camera_sensor_ov5640_data,
 	},
 };
-#endif
+#endif //CONFIG_OV5640
 
 /*add touchsreen size definition for mooncake.  QVGA*/
 #if defined( CONFIG_TOUCHSCREEN_MSM_LEGACY)
@@ -2446,8 +2467,7 @@ struct msm_ts_platform_data msm_tssc_pdata = {
 	.max_press =255,
 	.inv_y = 955,
 };
-#endif
-#endif //CONFIG_ZTE_PLATFORM
+#endif //touchscreens
 
 static u32 msm_calculate_batt_capacity(u32 current_voltage);
 
