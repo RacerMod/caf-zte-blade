@@ -33,6 +33,12 @@
 #include "msm_fb.h"
 #include "mdp4.h"
 
+#if (defined CONFIG_FB_MSM_LCDC_OLED_WVGA)||(defined CONFIG_FB_MSM_LCDC_SKATE_WVGA) //ZTE_LCD_LHT_20100810_001
+extern void lcdc_lead_sleep(void);
+extern void lcdc_truly_sleep(void);
+extern u32 LcdPanleID;
+#endif
+
 #ifdef CONFIG_FB_MSM_MDP40
 #define LCDC_BASE	0xC0000
 #define DTV_BASE	0xD0000
@@ -119,8 +125,14 @@ int mdp_lcdc_on(struct platform_device *pdev)
 	else if (mfd->fb_imgType == MDP_RGBA_8888)
 		dma2_cfg_reg |= DMA_PACK_PATTERN_BGR;
 	else
+#ifdef CONFIG_FB_MSM_LCDC_OLED_WVGA ///ZTE_LCD_LUYA_20100325_001
+		if(mfd->panel_info.bl_max==32)
+			dma2_cfg_reg |= DMA_PACK_PATTERN_RGB;
+		else
+			dma2_cfg_reg |= DMA_PACK_PATTERN_BGR;
+#else
 		dma2_cfg_reg |= DMA_PACK_PATTERN_RGB;
-
+#endif
 	if (bpp == 2)
 		dma2_cfg_reg |= DMA_IBUF_FORMAT_RGB565;
 	else if (bpp == 3)
@@ -238,6 +250,18 @@ int mdp_lcdc_on(struct platform_device *pdev)
 #else
 	hsync_polarity = 0;
 	vsync_polarity = 0;
+#endif
+#ifdef CONFIG_FB_MSM_LCDC_OLED_WVGA //ZTE_LCD_LHT_20100810_001
+	if(LcdPanleID==42)
+		lcdc_lead_sleep();
+	if(LcdPanleID==41)
+		lcdc_truly_sleep();
+#endif
+#ifdef CONFIG_FB_MSM_LCDC_SKATE_WVGA //ZTE_LCD_LHT_20100810_001
+	if(LcdPanleID==60)
+		lcdc_lead_sleep();
+	if(LcdPanleID==61)
+		lcdc_truly_sleep();
 #endif
 	data_en_polarity = 0;
 

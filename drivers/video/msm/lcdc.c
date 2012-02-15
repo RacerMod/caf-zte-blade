@@ -38,6 +38,9 @@ static int lcdc_remove(struct platform_device *pdev);
 
 static int lcdc_off(struct platform_device *pdev);
 static int lcdc_on(struct platform_device *pdev);
+#ifdef CONFIG_FB_MSM_LCDC_OLED_WVGA
+extern u32 LcdPanleID;
+#endif
 
 static struct platform_device *pdev_list[MSM_FB_MAX_DEV_LIST];
 static int pdev_list_cnt;
@@ -68,12 +71,22 @@ static int lcdc_off(struct platform_device *pdev)
 
 	clk_disable(pixel_mdp_clk);
 	clk_disable(pixel_lcdc_clk);
+#ifdef CONFIG_FB_MSM_LCDC_OLED_WVGA
+	if(LcdPanleID!=42)
+	{
+		if (lcdc_pdata && lcdc_pdata->lcdc_power_save)
+			lcdc_pdata->lcdc_power_save(0);
+	}
+#elif defined(CONFIG_FB_MSM_LCDC_SKATE_WVGA)
 
+#else
 	if (lcdc_pdata && lcdc_pdata->lcdc_power_save)
 		lcdc_pdata->lcdc_power_save(0);
-
+#endif
+#ifndef CONFIG_ZTE_PLATFORM
 	if (lcdc_pdata && lcdc_pdata->lcdc_gpio_config)
 		ret = lcdc_pdata->lcdc_gpio_config(0);
+#endif
 
 #ifndef CONFIG_MSM_BUS_SCALING
 	if (mfd->ebi1_clk) {
