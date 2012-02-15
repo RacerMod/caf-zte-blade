@@ -346,9 +346,18 @@ static int msm_fb_probe(struct platform_device *pdev)
 		return -ENOMEM;
 
 	mfd->panel_info.frame_count = 0;
+#ifdef CONFIG_ZTE_PLATFORM
+	mfd->bl_level = mfd->panel_info.bl_max/6;
+#else
 	mfd->bl_level = 0;
+#endif
 #ifdef CONFIG_FB_MSM_OVERLAY
 	mfd->overlay_play_enable = 1;
+#endif
+#ifdef CONFIG_ZTE_PLATFORM
+       //ZTE_LCD_LHT_20100622_001 start
+       init_lcd_proc();
+       //ZTE_LCD_LHT_20100622_001 end
 #endif
 	rc = msm_fb_register(mfd);
 	if (rc)
@@ -691,9 +700,14 @@ static int msm_fb_blank_sub(int blank_mode, struct fb_info *info,
 	switch (blank_mode) {
 	case FB_BLANK_UNBLANK:
 		if (!mfd->panel_power_on) {
+#ifndef CONFIG_ZTE_PLATFORM
 			msleep(16);
+#endif
 			ret = pdata->on(mfd->pdev);
 			if (ret == 0) {
+#ifdef CONFIG_ZTE_PLATFORM
+				msleep(30);				////ZTE_LCD_LUYA_20100221_001				////ZTE_LCD_LUYA_20100629_001
+#endif
 				mfd->panel_power_on = TRUE;
 
 /* ToDo: possible conflict with android which doesn't expect sw refresher */
@@ -720,9 +734,13 @@ static int msm_fb_blank_sub(int blank_mode, struct fb_info *info,
 
 			mfd->op_enable = FALSE;
 			curr_pwr_state = mfd->panel_power_on;
+#ifdef CONFIG_ZTE_PLATFORM
+			msm_fb_set_backlight(mfd, 0);		///ZTE_LCD_LUYA_20100201_001
+#endif
 			mfd->panel_power_on = FALSE;
-
+#ifndef CONFIG_ZTE_PLATFORM
 			msleep(16);
+#endif
 			ret = pdata->off(mfd->pdev);
 			if (ret)
 				mfd->panel_power_on = curr_pwr_state;
