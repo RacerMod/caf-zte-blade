@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux/arm 2.6.38.6 Kernel Configuration
-# Wed Feb 15 02:50:12 2012
+# Wed Feb 15 13:36:12 2012
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -2098,6 +2098,8 @@ CONFIG_LEDS_CLASS=y
 #
 # LED drivers
 #
+# CONFIG_ZTE_NLED_BLINK_WHILE_APP_SUSPEND is not set
+CONFIG_LED_ON_AFTER_SUSPEND=y
 # CONFIG_LEDS_PCA9532 is not set
 CONFIG_LEDS_GPIO=y
 # CONFIG_LEDS_MSM_PDM is not set
