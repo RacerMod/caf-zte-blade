@@ -48,6 +48,17 @@
 #include "mdp.h"
 #include "mdp4.h"
 
+//ZTE_LCD_LHT_20100622_001 start
+#include <linux/proc_fs.h>
+static struct proc_dir_entry * d_entry;
+static int lcd_debug;
+char  module_name[50]={"0"};
+void init_lcd_proc(void);
+void deinit_lcd_proc(void);
+static int msm_lcd_read_proc(char *page, char **start, off_t off, int count, int *eof, void *data);
+static int msm_lcd_write_proc(struct file *file, const char __user *buffer,unsigned long count, void *data);
+//ZTE_LCD_LHT_20100622_001 end
+
 #ifdef CONFIG_FB_MSM_LOGO
 #define INIT_IMAGE_FILE "/initlogo.rle"
 extern int load_565rle_image(char *filename);
@@ -67,6 +78,10 @@ static int pdev_list_cnt;
 int vsync_mode = 1;
 
 #define MAX_BLIT_REQ 256
+
+#ifdef CONFIG_ZTE_PLATFORM
+u32 LcdPanleID=(u32)LCD_PANEL_NOPANEL;   //ZTE_LCD_LHT_20100611_001
+#endif
 
 #define MAX_FBI_LIST 32
 static struct fb_info *fbi_list[MAX_FBI_LIST];
@@ -1239,8 +1254,12 @@ static int msm_fb_register(struct msm_fb_data_type *mfd)
 			msm_fb_debugfs_file_create(sub_dir, "frame_count",
 						   (u32 *) &mfd->panel_info.
 						   frame_count);
-
-
+#ifdef CONFIG_ZTE_PLATFORM
+			//add by zhanggc for test   ZTE_LCD_LHT_20100611_001
+		    printk("[ZGC]:LcdPanleID = %d\n",LcdPanleID);
+            msm_fb_debugfs_file_create(sub_dir, "lcd_type",
+						   (u32 *) &LcdPanleID);
+#endif
 			switch (mfd->dest) {
 			case DISPLAY_LCD:
 				msm_fb_debugfs_file_create(sub_dir,
@@ -2922,6 +2941,149 @@ static int msm_fb_register_driver(void)
 {
 	return platform_driver_register(&msm_fb_driver);
 }
+
+#ifdef CONFIG_ZTE_PLATFORM
+//ZTE_LCD_LHT_20100622_001 start
+static int msm_lcd_read_proc(
+        char *page, char **start, off_t off, int count, int *eof, void *data)
+{
+	int len = 0;
+    printk("[ZGC]:msm_lcd_read_proc\n");
+	switch(LcdPanleID)
+	{
+		case LCD_PANEL_P726_ILI9325C:
+			strcpy(module_name,"1");
+			//len = sprintf(page, "%s\n","1");
+			break;
+		case LCD_PANEL_P726_HX8347D:
+			strcpy(module_name,"2");
+			//len = sprintf(page, "%s\n","2");
+			break;
+		case LCD_PANEL_P726_S6D04M0X01:
+			strcpy(module_name,"3");
+			//len = sprintf(page, "%s\n","3");
+			break;
+		case LCD_PANEL_P722_HX8352A:
+			strcpy(module_name,"10");
+			//len = sprintf(page, "%s\n","10");
+			break;
+		case LCD_PANEL_P727_HX8352A:
+			strcpy(module_name,"20");
+			//len = sprintf(page, "%s\n","20");
+			break;
+		case LCD_PANEL_R750_ILI9481_1:
+			strcpy(module_name,"30");
+			//len = sprintf(page, "%s\n","30");
+			break;
+		case LCD_PANEL_R750_ILI9481_2:
+			strcpy(module_name,"31");
+			//len = sprintf(page, "%s\n","31");
+			break;
+		case LCD_PANEL_R750_ILI9481_3:
+			strcpy(module_name,"32");
+			//len = sprintf(page, "%s\n","32");
+			break;
+		case LCD_PANEL_P729_TL2796:
+			strcpy(module_name,"40");
+			//len = sprintf(page, "%s\n","40");
+			break;
+		case LCD_PANEL_P729_TFT_LEAD:
+			strcpy(module_name,"42");
+			//len = sprintf(page, "%s\n","40");
+			break;
+		case LCD_PANEL_P729_TFT_TRULY:
+			strcpy(module_name,"41");
+			//len = sprintf(page, "%s\n","40");
+			break;
+		case LCD_PANEL_V9_NT39416I:
+			strcpy(module_name,"50");
+			//len = sprintf(page, "%s\n","40");
+			break;	
+		case LCD_PANEL_4P3_NT35510:
+			strcpy(module_name,"60");//ZTE_LCD_LKEJ_20110225_001
+			break;
+		case LCD_PANEL_4P3_HX8369A:
+			strcpy(module_name,"61");
+			break;
+		case LCD_PANEL_3P8_NT35510_1:
+			strcpy(module_name,"70");
+			break;
+		case LCD_PANEL_3P8_NT35510_2:
+			strcpy(module_name,"71");
+			break;
+		case LCD_PANEL_3P8_HX8363A:
+			strcpy(module_name,"72");
+			break;
+		case LCD_PANEL_3P5_ILI9481_1:
+			strcpy(module_name,"80");
+			break;
+		case LCD_PANEL_3P5_ILI9481_2:
+			strcpy(module_name,"81");
+			break;
+		case LCD_PANEL_3P5_R61581:
+			strcpy(module_name,"82");
+			break;
+		case LCD_PANEL_2P6_HX8368A_1:
+			strcpy(module_name,"90");
+			break;
+		case LCD_PANEL_2P6_HX8368A_2:
+			strcpy(module_name,"91");
+			break;
+		default:
+			strcpy(module_name,"0");
+			//len = sprintf(page, "%s\n","0");
+			break;
+	}
+	len = sprintf(page, "%s\n",module_name);
+	return len;
+
+}
+
+static int msm_lcd_write_proc(struct file *file, const char __user *buffer,
+			     unsigned long count, void *data)
+{
+	char tmp[16] = {0};
+	int len = 0;
+	len = count;
+	
+    
+	if (count > sizeof(tmp)) {
+		len = sizeof(tmp) - 1;
+	}
+	if(copy_from_user(tmp, buffer, len))
+                return -EFAULT;
+	if (strstr(tmp, "on")) {
+		lcd_debug = 1;
+	} else if (strstr(tmp, "off")) {
+		lcd_debug = 0;
+	}
+	return count;
+
+}
+
+void  init_lcd_proc(void)
+{
+       printk("[ZGC]:init_lcd_proc\n");
+	d_entry = create_proc_entry("msm_lcd",
+				    0, NULL);
+        if (d_entry) {
+                d_entry->read_proc = msm_lcd_read_proc;
+                d_entry->write_proc = msm_lcd_write_proc;
+                d_entry->data = NULL;
+        }
+
+}
+
+void deinit_lcd_proc(void)
+{
+        printk("[ZGC]:deinit_lcd_proc\n");
+	if (NULL != d_entry) {
+		remove_proc_entry("msm_lcd", NULL);
+		d_entry = NULL;
+	}
+}
+//ZTE_LCD_LHT_20100622_001 end
+#endif
 
 struct platform_device *msm_fb_add_device(struct platform_device *pdev)
 {
