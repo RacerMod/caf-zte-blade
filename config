@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux/arm 2.6.38.6 Kernel Configuration
-# Wed Feb 15 13:36:12 2012
+# Sat Feb 18 21:32:48 2012
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -1428,6 +1428,7 @@ CONFIG_GPIO_SYSFS=y
 #
 # CONFIG_GPIO_BASIC_MMIO is not set
 # CONFIG_GPIO_IT8761E is not set
+CONFIG_GPIO_MSM7200A=y
 
 #
 # I2C GPIO expanders:
